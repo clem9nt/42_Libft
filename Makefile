@@ -1,56 +1,63 @@
 # Sources
-SRCS :=	src/ft_atoi.c \
-	src/ft_bzero.c \
-	src/ft_calloc.c \
-	src/ft_isalnum.c \
-	src/ft_isalpha.c \
-	src/ft_isascii.c \
-	src/ft_isdigit.c \
-	src/ft_isprint.c \
-	src/ft_memchr.c \
-	src/ft_memcmp.c \
-	src/ft_memcpy.c \
-	src/ft_memmove.c \
-	src/ft_memset.c \
-	src/ft_strchr.c \
-	src/ft_strlcat.c \
-	src/ft_strlcpy.c \
-	src/ft_strlen.c \
-	src/ft_strncmp.c \
-	src/ft_strnstr.c \
-	src/ft_strrchr.c \
-	src/ft_tolower.c \
-	src/ft_toupper.c \
-	src/ft_strdup.c \
-	src/ft_substr.c \
-	src/ft_strjoin.c \
-	src/ft_strtrim.c \
-	src/ft_split.c \
-	src/ft_itoa.c \
-	src/ft_strmapi.c \
-	src/ft_striteri.c \
-	src/ft_putchar_fd.c \
-	src/ft_putstr_fd.c \
-	src/ft_putendl_fd.c \
-	src/ft_putnbr_fd.c \
+SRCS := src/all/ft_atoi.c \
+	src/all/ft_bzero.c \
+	src/all/ft_calloc.c \
+	src/all/ft_isalnum.c \
+	src/all/ft_isalpha.c \
+	src/all/ft_isascii.c \
+	src/all/ft_isdigit.c \
+	src/all/ft_isprint.c \
+	src/all/ft_memchr.c \
+	src/all/ft_memcmp.c \
+	src/all/ft_memcpy.c \
+	src/all/ft_memmove.c \
+	src/all/ft_memset.c \
+	src/all/ft_strchr.c \
+	src/all/ft_strlcat.c \
+	src/all/ft_strlcpy.c \
+	src/all/ft_strlen.c \
+	src/all/ft_strncmp.c \
+	src/all/ft_strnstr.c \
+	src/all/ft_strrchr.c \
+	src/all/ft_tolower.c \
+	src/all/ft_toupper.c \
+	src/all/ft_strdup.c \
+	src/all/ft_substr.c \
+	src/all/ft_strjoin.c \
+	src/all/ft_strtrim.c \
+	src/all/ft_split.c \
+	src/all/ft_itoa.c \
+	src/all/ft_strmapi.c \
+	src/all/ft_striteri.c \
+	src/all/ft_putchar_fd.c \
+	src/all/ft_putstr_fd.c \
+	src/all/ft_putendl_fd.c \
+	src/all/ft_putnbr_fd.c \
 
-# Linked list
 SRCS :=	$(SRCS) \
-	src/ft_lstnew.c \
-	src/ft_lstadd_front.c \
-	src/ft_lstsize.c \
-	src/ft_lstlast.c \
-	src/ft_lstadd_back.c \
-	src/ft_lstdelone.c \
-	src/ft_lstclear.c \
-	src/ft_lstiter.c \
-	src/ft_lstmap.c \
+	src/linked_list/ft_lstnew.c \
+	src/linked_list/ft_lstadd_front.c \
+	src/linked_list/ft_lstsize.c \
+	src/linked_list/ft_lstlast.c \
+	src/linked_list/ft_lstadd_back.c \
+	src/linked_list/ft_lstdelone.c \
+	src/linked_list/ft_lstclear.c \
+	src/linked_list/ft_lstiter.c \
+	src/linked_list/ft_lstmap.c \
 
-# Extra
 SRCS :=	$(SRCS) \
-	src/ft_min.c \
-	src/ft_max.c \
-	src/ft_abs.c \
+	src/ft_printf/ft_printf.c \
+	src/ft_printf/options1.c \
+	src/ft_printf/options2.c \
+	src/ft_printf/utils.c \
+
+SRCS :=	$(SRCS) \
+	src/get_next_line/get_next_line.c \
+
+SRCS :=	$(SRCS) \
+	src/extra/ft_min.c \
+	src/extra/ft_max.c \
+	src/extra/ft_abs.c \
 
 # Headers
 HEADERS = include/libft.h
@@ -75,29 +82,35 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
-	@$(Y)"Created $(NAME)\n"
+	@tput setaf 1
+	@$(G)"Created $(NAME)\n"
 
-$(OBJS): $(SRCS)
-	@$(CC) $(CFLAGS) -o $@ -c $<
-	@$(Y)"Linking $@"
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@tput setaf 1
+	@$(Y)"$@"
+	@tput setaf 1
 
 clean:
+	@tput setaf 1
 	@$(RM) $(OBJS)
-	@$(G)"Removed objects\n"
+	@$(B)"Removed objects\n"
 
 fclean: clean
+	@tput setaf 1
 	@$(RM) $(NAME)
-	@$(G)"Removed $(NAME)\n"
+	@$(B)"Removed $(NAME)\n"
 
 norminette:
+	@tput setaf 1
 	@norminette -R CheckForbiddenSourceHeader $(SRCS) | grep -v "OK" || true
-	@$(G)"Checked sources norm.\n"
 	@norminette -R CheckDefine $(HEADERS) | grep -v "OK" || true
-	@$(G)"Checked headers norm.\n"
+	@$(B)"Norm checked.\n"
 
 update:
+	@tput setaf 1
 	@git pull
-	@$(G)"Up to date.\n"
+	@$(B)"Updated.\n"
 
 re: fclean all
 
