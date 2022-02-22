@@ -91,7 +91,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(ECHO)"$(G)created $(END)$@"
 
 clean:
-	@[ "$(shell ls $(OBJ_DIR) 2>/dev/null)" ] \
+	@[ -d $(OBJ_DIR) ] \
 		&& $(RM) $(OBJ_DIR) && $(ECHO)"$(R)removed$(END) $(OBJ_DIR)/\n" || true
 
 fclean: clean
