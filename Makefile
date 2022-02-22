@@ -1,117 +1,140 @@
-# Sources
-SRCS := src/all/ft_atoi.c \
-	src/all/ft_bzero.c \
-	src/all/ft_calloc.c \
-	src/all/ft_isalnum.c \
-	src/all/ft_isalpha.c \
-	src/all/ft_isascii.c \
-	src/all/ft_isdigit.c \
-	src/all/ft_isprint.c \
-	src/all/ft_memchr.c \
-	src/all/ft_memcmp.c \
-	src/all/ft_memcpy.c \
-	src/all/ft_memmove.c \
-	src/all/ft_memset.c \
-	src/all/ft_strchr.c \
-	src/all/ft_strlcat.c \
-	src/all/ft_strlcpy.c \
-	src/all/ft_strlen.c \
-	src/all/ft_strncmp.c \
-	src/all/ft_strnstr.c \
-	src/all/ft_strrchr.c \
-	src/all/ft_tolower.c \
-	src/all/ft_toupper.c \
-	src/all/ft_strdup.c \
-	src/all/ft_substr.c \
-	src/all/ft_strjoin.c \
-	src/all/ft_strtrim.c \
-	src/all/ft_split.c \
-	src/all/ft_itoa.c \
-	src/all/ft_strmapi.c \
-	src/all/ft_striteri.c \
-	src/all/ft_putchar_fd.c \
-	src/all/ft_putstr_fd.c \
-	src/all/ft_putendl_fd.c \
-	src/all/ft_putnbr_fd.c \
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cvidon <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/22 16:21:48 by cvidon            #+#    #+#              #
+#    Updated: 2022/02/22 16:24:34 by cvidon           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRCS :=	$(SRCS) \
-	src/linked_list/ft_lstnew.c \
-	src/linked_list/ft_lstadd_front.c \
-	src/linked_list/ft_lstsize.c \
-	src/linked_list/ft_lstlast.c \
-	src/linked_list/ft_lstadd_back.c \
-	src/linked_list/ft_lstdelone.c \
-	src/linked_list/ft_lstclear.c \
-	src/linked_list/ft_lstiter.c \
-	src/linked_list/ft_lstmap.c \
+# ========== [ Project files ]
+#
+# TODO add obj/ and find a way to copy the src dir tree into it.
+#
+# Adjust NAME and SRC to your project.
 
-SRCS :=	$(SRCS) \
-	src/ft_printf/ft_printf.c \
-	src/ft_printf/options1.c \
-	src/ft_printf/options2.c \
-	src/ft_printf/utils.c \
+NAME		= libft
+TARGET 		= $(NAME).a
 
-SRCS :=	$(SRCS) \
-	src/get_next_line/get_next_line.c \
+INC_DIR 	= include
+INC			= $(INC_DIR)
 
-SRCS :=	$(SRCS) \
-	src/extra/ft_min.c \
-	src/extra/ft_max.c \
-	src/extra/ft_abs.c \
+SRC_DIR		= src
+SRC 		= $(SRC_DIR)/all/ft_atoi.c 					\
+			  $(SRC_DIR)/all/ft_bzero.c 				\
+			  $(SRC_DIR)/all/ft_calloc.c 				\
+			  $(SRC_DIR)/all/ft_isalnum.c 				\
+			  $(SRC_DIR)/all/ft_isalpha.c 				\
+			  $(SRC_DIR)/all/ft_isascii.c 				\
+			  $(SRC_DIR)/all/ft_isdigit.c 				\
+			  $(SRC_DIR)/all/ft_isprint.c 				\
+			  $(SRC_DIR)/all/ft_memchr.c 				\
+			  $(SRC_DIR)/all/ft_memcmp.c 				\
+			  $(SRC_DIR)/all/ft_memcpy.c 				\
+			  $(SRC_DIR)/all/ft_memmove.c 				\
+			  $(SRC_DIR)/all/ft_memset.c 				\
+			  $(SRC_DIR)/all/ft_strchr.c 				\
+			  $(SRC_DIR)/all/ft_strlcat.c 				\
+			  $(SRC_DIR)/all/ft_strlcpy.c 				\
+			  $(SRC_DIR)/all/ft_strlen.c 				\
+			  $(SRC_DIR)/all/ft_strncmp.c 				\
+			  $(SRC_DIR)/all/ft_strnstr.c 				\
+			  $(SRC_DIR)/all/ft_strrchr.c 				\
+			  $(SRC_DIR)/all/ft_tolower.c 				\
+			  $(SRC_DIR)/all/ft_toupper.c 				\
+			  $(SRC_DIR)/all/ft_strdup.c 				\
+			  $(SRC_DIR)/all/ft_substr.c 				\
+			  $(SRC_DIR)/all/ft_strjoin.c 				\
+			  $(SRC_DIR)/all/ft_strtrim.c 				\
+			  $(SRC_DIR)/all/ft_split.c 				\
+			  $(SRC_DIR)/all/ft_itoa.c 					\
+			  $(SRC_DIR)/all/ft_strmapi.c 				\
+			  $(SRC_DIR)/all/ft_striteri.c 				\
+			  $(SRC_DIR)/all/ft_putchar_fd.c 			\
+			  $(SRC_DIR)/all/ft_putstr_fd.c 			\
+			  $(SRC_DIR)/all/ft_putendl_fd.c			\
+			  $(SRC_DIR)/all/ft_putnbr_fd.c
+SRC		   += $(SRC_DIR)/linked_list/ft_lstnew.c 		\
+			  $(SRC_DIR)/linked_list/ft_lstadd_front.c	\
+			  $(SRC_DIR)/linked_list/ft_lstsize.c 		\
+			  $(SRC_DIR)/linked_list/ft_lstlast.c 		\
+			  $(SRC_DIR)/linked_list/ft_lstadd_back.c 	\
+			  $(SRC_DIR)/linked_list/ft_lstdelone.c 	\
+			  $(SRC_DIR)/linked_list/ft_lstclear.c 		\
+			  $(SRC_DIR)/linked_list/ft_lstiter.c 		\
+			  $(SRC_DIR)/linked_list/ft_lstmap.c
+SRC		   += $(SRC_DIR)/ft_printf/ft_printf.c 			\
+			  $(SRC_DIR)/ft_printf/options1.c 			\
+			  $(SRC_DIR)/ft_printf/options2.c 			\
+			  $(SRC_DIR)/ft_printf/utils.c
+SRC		   += $(SRC_DIR)/get_next_line/get_next_line.c
+SRC		   += $(SRC_DIR)/extra/ft_min.c 				\
+			  $(SRC_DIR)/extra/ft_max.c 				\
+			  $(SRC_DIR)/extra/ft_abs.c
 
-# Headers
-HEADERS = include/libft.h
+OBJ 		= $(SRC:.c=.o)
 
-# Compile
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Wconversion -Wsign-conversion
-OBJS := $(SRCS:.c=.o)
-NAME = libft.a
+# ========== [ Compiler flags ]
 
-# Clean
-RM = rm -f
+CC 			= gcc
+CFLAGS 		= -Wall -Wextra -Werror -Wconversion -Wsign-conversion
+CPPFLAGS	= $(INC:%=-I%)
 
-# Message
-R = tput setaf 1 && echo -n "\r\033[K"
-G = tput setaf 2 && echo -n "\r\033[K"
-B = tput setaf 4 && echo -n "\r\033[K"
-K = tput setaf 0 && echo -n "\r\033[K"
-Y = tput setaf 3 && echo -n "\r\033[K"
+# ========== [ Misc ]
 
-all: $(NAME)
+RM 			= rm -f
 
-$(NAME): $(OBJS)
-	@ar rcs $(NAME) $(OBJS)
-	@tput setaf 1
-	@$(G)"Created $(NAME)\n"
+# ========== [ Build ]
+
+all: $(TARGET)
+
+debug: TARGET := $(TARGET)-debug
+debug: $(TARGET)
+
+sanitizer: CFLAGS += -fsanitize=address,undefined,signed-integer-overflow
+sanitizer: debug
+
+$(TARGET): $(OBJ)
+	@ar rcs $(TARGET) $(OBJ)
+	@$(ECHO)"$(G)created$(END) $(END)$(TARGET)\n"
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@tput setaf 1
-	@$(Y)"$@"
-	@tput setaf 1
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(ECHO)"$(W)$@$(END)"
 
 clean:
-	@tput setaf 1
-	@$(RM) $(OBJS)
-	@$(B)"Removed objects\n"
+	@test "$(shell ls $(SRC_DIR)/*/*.o 2>/dev/null | wc -w)" = "$(shell echo 0)" \
+		|| { $(RM) $(OBJ); $(ECHO)"$(R)removed$(END) obj\n"; }
 
 fclean: clean
-	@tput setaf 1
-	@$(RM) $(NAME)
-	@$(B)"Removed $(NAME)\n"
+	@[ -f "$(TARGET)" ] && $(RM) $(TARGET) && $(ECHO)"$(R)removed$(END) $(TARGET)\n" || true
 
-norminette:
-	@tput setaf 1
-	@norminette -R CheckForbiddenSourceHeader $(SRCS) | grep -v "OK" || true
-	@norminette -R CheckDefine $(HEADERS) | grep -v "OK" || true
-	@$(B)"Norm checked.\n"
+norm:
+	@norminette -R CheckForbiddenSourceHeader $(SRC) | grep -v "OK" || true
+	@$(ECHO)"$(G)checked$(END) sources\n"
+	@norminette -R CheckDefine $(INC_DIR) | grep -v "OK" || true
+	@$(ECHO)"$(G)checked$(END) headers\n"
 
 update:
-	@tput setaf 1
 	@git pull
-	@$(B)"Updated.\n"
+	@$(ECHO)"$(G)updated$(END)\n"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all debug clean fclean norm update re
+
+# ========== [ Stdout ]
+
+R		= $(shell tput setaf 1)
+G		= $(shell tput setaf 2)
+Y		= $(shell tput setaf 3)
+B		= $(shell tput setaf 4)
+M		= $(shell tput setaf 5)
+C		= $(shell tput setaf 6)
+W		= $(shell tput setaf 7)
+K		= $(shell tput setaf 8)
+END		= $(shell tput sgr0)
+ECHO  	= echo -n "\r\033[K$(NAME): "
