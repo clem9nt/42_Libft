@@ -1,21 +1,6 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: cvidon <marvin@42.fr>                      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/22 16:21:48 by cvidon            #+#    #+#              #
-#    Updated: 2022/02/22 16:33:49 by cvidon           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # ========== [ Project files ]
 #
-# TODO add obj/ and find a way to copy the src dir tree into it.
-# https://ismail.badawi.io/blog/automatic-directory-creation-in-make/
-#
-# Adjust NAME and SRC to your project.
+# Adjust NAME and SRCS to your project.
 
 NAME		= libft
 TARGET 		= $(NAME).a
@@ -24,7 +9,7 @@ INC_DIR 	= include
 INC			= $(INC_DIR)
 
 SRC_DIR		= src
-SRC 		= $(SRC_DIR)/all/ft_atoi.c 					\
+SRCS 		= $(SRC_DIR)/all/ft_atoi.c 					\
 			  $(SRC_DIR)/all/ft_bzero.c 				\
 			  $(SRC_DIR)/all/ft_calloc.c 				\
 			  $(SRC_DIR)/all/ft_isalnum.c 				\
@@ -57,26 +42,27 @@ SRC 		= $(SRC_DIR)/all/ft_atoi.c 					\
 			  $(SRC_DIR)/all/ft_putchar_fd.c 			\
 			  $(SRC_DIR)/all/ft_putstr_fd.c 			\
 			  $(SRC_DIR)/all/ft_putendl_fd.c			\
-			  $(SRC_DIR)/all/ft_putnbr_fd.c
-SRC		   += $(SRC_DIR)/linked_list/ft_lstnew.c 		\
+			  $(SRC_DIR)/all/ft_putnbr_fd.c				\
+			  $(SRC_DIR)/linked_list/ft_lstnew.c 		\
 			  $(SRC_DIR)/linked_list/ft_lstadd_front.c	\
 			  $(SRC_DIR)/linked_list/ft_lstsize.c 		\
 			  $(SRC_DIR)/linked_list/ft_lstlast.c 		\
 			  $(SRC_DIR)/linked_list/ft_lstadd_back.c 	\
 			  $(SRC_DIR)/linked_list/ft_lstdelone.c 	\
-			  $(SRC_DIR)/linked_list/ft_lstclear.c 		\
+			  $(SRC_DIR)/linked_list/ft_lstclear.c		\
 			  $(SRC_DIR)/linked_list/ft_lstiter.c 		\
-			  $(SRC_DIR)/linked_list/ft_lstmap.c
-SRC		   += $(SRC_DIR)/ft_printf/ft_printf.c 			\
+			  $(SRC_DIR)/linked_list/ft_lstmap.c		\
+			  $(SRC_DIR)/ft_printf/ft_printf.c 			\
 			  $(SRC_DIR)/ft_printf/options1.c 			\
 			  $(SRC_DIR)/ft_printf/options2.c 			\
-			  $(SRC_DIR)/ft_printf/utils.c
-SRC		   += $(SRC_DIR)/get_next_line/get_next_line.c
-SRC		   += $(SRC_DIR)/extra/ft_min.c 				\
+			  $(SRC_DIR)/ft_printf/utils.c				\
+			  $(SRC_DIR)/get_next_line/get_next_line.c	\
+			  $(SRC_DIR)/extra/ft_min.c 				\
 			  $(SRC_DIR)/extra/ft_max.c 				\
 			  $(SRC_DIR)/extra/ft_abs.c
 
-OBJ 		= $(SRC:.c=.o)
+OBJ_DIR 	= obj
+OBJS 		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # ========== [ Compiler flags ]
 
@@ -86,35 +72,33 @@ CPPFLAGS	= $(INC:%=-I%)
 
 # ========== [ Misc ]
 
-RM 			= rm -f
+RM 			= rm -rf
 
-# ========== [ Build ]
+# ========== [ Recipe ]
 
 all: $(TARGET)
 
-debug: TARGET := $(TARGET)-debug
-debug: $(TARGET)
-
 sanitizer: CFLAGS += -fsanitize=address,undefined,signed-integer-overflow
-sanitizer: debug
+sanitizer: $(TARGET)
 
-$(TARGET): $(OBJ)
-	@ar rcs $(TARGET) $(OBJ)
+$(TARGET): $(OBJS)
+	@ar rcs $(TARGET) $(OBJS)
 	@$(ECHO)"$(G)created$(END) $(END)$(TARGET)\n"
 
-%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@[ ! -d $(@D) ] && mkdir -p  $(@D) || true
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-	@$(ECHO)"$(W)$@$(END)"
+	@$(ECHO)"$(G)created $(END)$@"
 
 clean:
-	@test "$(shell ls $(SRC_DIR)/*/*.o 2>/dev/null | wc -w)" = "$(shell echo 0)" \
-		|| { $(RM) $(OBJ); $(ECHO)"$(R)removed$(END) obj\n"; }
+	@[ "$(shell ls $(OBJ_DIR) 2>/dev/null)" ] \
+		&& $(RM) $(OBJ_DIR) && $(ECHO)"$(R)removed$(END) $(OBJ_DIR)/\n" || true
 
 fclean: clean
 	@[ -f "$(TARGET)" ] && $(RM) $(TARGET) && $(ECHO)"$(R)removed$(END) $(TARGET)\n" || true
 
 norm:
-	@norminette -R CheckForbiddenSourceHeader $(SRC) | grep -v "OK" || true
+	@norminette -R CheckForbiddenSourceHeader $(SRCS) | grep -v "OK" || true
 	@$(ECHO)"$(G)checked$(END) sources\n"
 	@norminette -R CheckDefine $(INC_DIR) | grep -v "OK" || true
 	@$(ECHO)"$(G)checked$(END) headers\n"
@@ -125,7 +109,7 @@ update:
 
 re: fclean all
 
-.PHONY: all debug clean fclean norm update re
+.PHONY: all clean fclean norm update re
 
 # ========== [ Stdout ]
 
