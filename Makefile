@@ -6,13 +6,14 @@
 #    By: cvidon <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 16:21:48 by cvidon            #+#    #+#              #
-#    Updated: 2022/02/22 16:24:34 by cvidon           ###   ########.fr        #
+#    Updated: 2022/02/22 16:33:49 by cvidon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ========== [ Project files ]
 #
 # TODO add obj/ and find a way to copy the src dir tree into it.
+# https://ismail.badawi.io/blog/automatic-directory-creation-in-make/
 #
 # Adjust NAME and SRC to your project.
 
