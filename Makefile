@@ -1,10 +1,8 @@
 # ========== [ Project files ]
-#
-# Adjust NAME and SRCS to your project.
 
 # TODO set name
-NAME		= libft
-TARGET 		= $(NAME).a
+PREFIX		= libft
+NAME 		= $(PREFIX).a
 
 INC_DIR 	= include
 INC			= $(INC_DIR)
@@ -86,14 +84,14 @@ RM 			= rm -rf
 
 # ========== [ Recipe ]
 
-all: $(TARGET)
+all: $(NAME)
 
 sanitizer: CFLAGS += -fsanitize=address,undefined,signed-integer-overflow
-sanitizer: $(TARGET)
+sanitizer: $(NAME)
 
-$(TARGET): $(OBJS)
-	@ar rcs $(TARGET) $(OBJS)
-	@$(ECHO)"$(G)created$(END) $(END)$(TARGET)\n"
+$(NAME): $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
+	@$(ECHO)"$(G)created$(END) $(END)$(NAME)\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@[ ! -d $(@D) ] && mkdir -p  $(@D) || true
@@ -105,7 +103,7 @@ clean:
 		&& $(RM) $(OBJ_DIR) && $(ECHO)"$(R)removed$(END) $(OBJ_DIR)/\n" || true
 
 fclean: clean
-	@[ -f "$(TARGET)" ] && $(RM) $(TARGET) && $(ECHO)"$(R)removed$(END) $(TARGET)\n" || true
+	@[ -f "$(NAME)" ] && $(RM) $(NAME) && $(ECHO)"$(R)removed$(END) $(NAME)\n" || true
 
 norm:
 	@norminette -R CheckForbiddenSourceHeader $(SRCS) | grep -v "OK" || true
@@ -132,4 +130,4 @@ C		= $(shell tput setaf 6)
 W		= $(shell tput setaf 7)
 K		= $(shell tput setaf 8)
 END		= $(shell tput sgr0)
-ECHO  	= echo -n "\r\033[K$(NAME): "
+ECHO  	= echo -n "\r\033[K$(PREFIX): "
