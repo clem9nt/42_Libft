@@ -2,64 +2,67 @@
 #
 # Adjust NAME and SRCS to your project.
 
+# TODO set name
 NAME		= libft
 TARGET 		= $(NAME).a
 
 INC_DIR 	= include
 INC			= $(INC_DIR)
 
+# TODO set sources
 SRC_DIR		= src
-SRCS 		= $(SRC_DIR)/all/ft_atoi.c 					\
-			  $(SRC_DIR)/all/ft_bzero.c 				\
-			  $(SRC_DIR)/all/ft_calloc.c 				\
-			  $(SRC_DIR)/all/ft_isalnum.c 				\
-			  $(SRC_DIR)/all/ft_isalpha.c 				\
-			  $(SRC_DIR)/all/ft_isascii.c 				\
-			  $(SRC_DIR)/all/ft_isdigit.c 				\
-			  $(SRC_DIR)/all/ft_isprint.c 				\
-			  $(SRC_DIR)/all/ft_memchr.c 				\
-			  $(SRC_DIR)/all/ft_memcmp.c 				\
-			  $(SRC_DIR)/all/ft_memcpy.c 				\
-			  $(SRC_DIR)/all/ft_memmove.c 				\
-			  $(SRC_DIR)/all/ft_memset.c 				\
-			  $(SRC_DIR)/all/ft_strchr.c 				\
-			  $(SRC_DIR)/all/ft_strlcat.c 				\
-			  $(SRC_DIR)/all/ft_strlcpy.c 				\
-			  $(SRC_DIR)/all/ft_strlen.c 				\
-			  $(SRC_DIR)/all/ft_strncmp.c 				\
-			  $(SRC_DIR)/all/ft_strnstr.c 				\
-			  $(SRC_DIR)/all/ft_strrchr.c 				\
-			  $(SRC_DIR)/all/ft_tolower.c 				\
-			  $(SRC_DIR)/all/ft_toupper.c 				\
-			  $(SRC_DIR)/all/ft_strdup.c 				\
-			  $(SRC_DIR)/all/ft_substr.c 				\
-			  $(SRC_DIR)/all/ft_strjoin.c 				\
-			  $(SRC_DIR)/all/ft_strtrim.c 				\
-			  $(SRC_DIR)/all/ft_split.c 				\
-			  $(SRC_DIR)/all/ft_itoa.c 					\
-			  $(SRC_DIR)/all/ft_strmapi.c 				\
-			  $(SRC_DIR)/all/ft_striteri.c 				\
-			  $(SRC_DIR)/all/ft_putchar_fd.c 			\
-			  $(SRC_DIR)/all/ft_putstr_fd.c 			\
-			  $(SRC_DIR)/all/ft_putendl_fd.c			\
-			  $(SRC_DIR)/all/ft_putnbr_fd.c				\
-			  $(SRC_DIR)/linked_list/ft_lstnew.c 		\
-			  $(SRC_DIR)/linked_list/ft_lstadd_front.c	\
-			  $(SRC_DIR)/linked_list/ft_lstsize.c 		\
-			  $(SRC_DIR)/linked_list/ft_lstlast.c 		\
-			  $(SRC_DIR)/linked_list/ft_lstadd_back.c 	\
-			  $(SRC_DIR)/linked_list/ft_lstdelone.c 	\
-			  $(SRC_DIR)/linked_list/ft_lstclear.c		\
-			  $(SRC_DIR)/linked_list/ft_lstiter.c 		\
-			  $(SRC_DIR)/linked_list/ft_lstmap.c		\
-			  $(SRC_DIR)/ft_printf/ft_printf.c 			\
-			  $(SRC_DIR)/ft_printf/options1.c 			\
-			  $(SRC_DIR)/ft_printf/options2.c 			\
-			  $(SRC_DIR)/ft_printf/utils.c				\
-			  $(SRC_DIR)/get_next_line/get_next_line.c	\
-			  $(SRC_DIR)/extra/ft_min.c 				\
-			  $(SRC_DIR)/extra/ft_max.c 				\
-			  $(SRC_DIR)/extra/ft_abs.c
+SRCS 		= all/ft_atoi.c 				\
+			  all/ft_bzero.c 				\
+			  all/ft_calloc.c 				\
+			  all/ft_isalnum.c 				\
+			  all/ft_isalpha.c 				\
+			  all/ft_isascii.c 				\
+			  all/ft_isdigit.c 				\
+			  all/ft_isprint.c 				\
+			  all/ft_memchr.c 				\
+			  all/ft_memcmp.c 				\
+			  all/ft_memcpy.c 				\
+			  all/ft_memmove.c 				\
+			  all/ft_memset.c 				\
+			  all/ft_strchr.c 				\
+			  all/ft_strlcat.c 				\
+			  all/ft_strlcpy.c 				\
+			  all/ft_strlen.c 				\
+			  all/ft_strncmp.c 				\
+			  all/ft_strnstr.c 				\
+			  all/ft_strrchr.c 				\
+			  all/ft_tolower.c 				\
+			  all/ft_toupper.c 				\
+			  all/ft_strdup.c 				\
+			  all/ft_substr.c 				\
+			  all/ft_strjoin.c 				\
+			  all/ft_strtrim.c 				\
+			  all/ft_split.c 				\
+			  all/ft_itoa.c 				\
+			  all/ft_strmapi.c 				\
+			  all/ft_striteri.c				\
+			  all/ft_putchar_fd.c 			\
+			  all/ft_putstr_fd.c 			\
+			  all/ft_putendl_fd.c			\
+			  all/ft_putnbr_fd.c			\
+			  linked_list/ft_lstnew.c 		\
+			  linked_list/ft_lstadd_front.c	\
+			  linked_list/ft_lstsize.c 		\
+			  linked_list/ft_lstlast.c 		\
+			  linked_list/ft_lstadd_back.c 	\
+			  linked_list/ft_lstdelone.c 	\
+			  linked_list/ft_lstclear.c		\
+			  linked_list/ft_lstiter.c 		\
+			  linked_list/ft_lstmap.c		\
+			  ft_printf/ft_printf.c 		\
+			  ft_printf/options1.c 			\
+			  ft_printf/options2.c 			\
+			  ft_printf/utils.c				\
+			  get_next_line/get_next_line.c	\
+			  extra/ft_min.c 				\
+			  extra/ft_max.c 				\
+			  extra/ft_abs.c
+SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
 OBJ_DIR 	= obj
 OBJS 		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -67,8 +70,15 @@ OBJS 		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # ========== [ Compiler flags ]
 
 CC 			= gcc
-CFLAGS 		= -Wall -Wextra -Werror -Wconversion -Wsign-conversion
-CPPFLAGS	= $(INC:%=-I%)
+
+# TODO set extra compiler flags
+CFLAGS 		=
+
+# TODO set extra linker flags
+CPPFLAGS	=
+
+CFLAGS 		+= -Wall -Wextra -Werror -Wconversion -Wsign-conversion
+CPPFLAGS	+= $(INC:%=-I%)
 
 # ========== [ Misc ]
 
