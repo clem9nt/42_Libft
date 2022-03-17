@@ -6,7 +6,7 @@
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:51:05 by cvidon            #+#    #+#             */
-/*   Updated: 2022/03/16 16:06:44 by cvidon           ###   ########.fr       */
+/*   Updated: 2022/03/17 12:56:24 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		tmp = ft_lstnew((*f)(cpy->content));
 		if (!tmp)
 		{
-			ft_lstclear(tmp, del);
-			ft_lstclear(new, del);
+			ft_lstclear(&tmp, del);
+			ft_lstclear(&new, del);
 			return (NULL);
 		}
 		ft_lstadd_back(&new, tmp);
 		cpy = cpy->next;
 	}
-	return (new);
-}
+	return (new); }
