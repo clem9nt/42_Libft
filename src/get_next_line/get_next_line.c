@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 12:14:07 by cvidon            #+#    #+#             */
-/*   Updated: 2022/01/28 18:40:33 by clem9nt          888   ########.fr       */
+/*   Created: 2022/04/15 12:10:52 by cvidon            #+#    #+#             */
+/*   Updated: 2022/04/15 12:12:59 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ static char	*newline(char *temp)
 	return (ft_substr(temp, 0, i));
 }
 
+/*
+ ** Be careful, checking '\0' before '\n' will lead to a still reachable in the
+ ** case of an input file like this:
+ ** ```
+ ** hello
+ **
+ ** ciao
+ ** ```
+ */
+
 static char	*newtemp(char *temp)
 {
 	char	*new;
@@ -68,10 +78,10 @@ static char	*newtemp(char *temp)
 	i = 0;
 	while (temp[i] && temp[i] != '\n')
 		i++;
-	if (temp[i] == '\0')
-		return (free(temp), NULL);
 	if (temp[i] == '\n')
 		i++;
+	if (temp[i] == '\0')
+		return (free(temp), NULL);
 	new = ft_substr(temp, (unsigned int)i, ft_strlen(temp) - i);
 	return (free(temp), new);
 }
