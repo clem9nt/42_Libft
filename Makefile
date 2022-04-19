@@ -10,6 +10,7 @@ INC			= $(INC_DIR)
 # TODO set sources
 SRC_DIR		= src
 SRCS 		= all/ft_atoi.c 				\
+			  all/ft_atol.c 				\
 			  all/ft_bzero.c 				\
 			  all/ft_calloc.c 				\
 			  all/ft_isalnum.c 				\
