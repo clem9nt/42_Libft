@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_dlstdelfirst.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 15:39:15 by cvidon            #+#    #+#             */
-/*   Updated: 2022/04/23 09:38:51 by cvidon           ###   ########.fr       */
+/*   Created: 2022/04/23 10:25:23 by cvidon            #+#    #+#             */
+/*   Updated: 2022/04/23 10:25:23 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*cpy;
+/*
+ ** Delete the first Element of a list.
+ */
 
-	if (!new)
+void	ft_dlstdelfirst(t_dlist **lst, void (*del)(void *))
+{
+	t_dlist	*temp;
+
+	temp = *lst;
+	if (!temp)
 		return ;
-	if (!*lst)
+	if (!temp->next)
 	{
-		*lst = new;
+		ft_dlstdelone(temp, del);
 		return ;
 	}
-	cpy = *lst;
-	while (cpy->next)
-		cpy = cpy->next;
-	cpy->next = new;
+	*lst = (*lst)->next;
+	(*lst)->prev = NULL;
+	ft_dlstdelone(temp, del);
 }

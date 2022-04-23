@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_dlstmap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 15:39:15 by cvidon            #+#    #+#             */
-/*   Updated: 2022/04/23 09:38:51 by cvidon           ###   ########.fr       */
+/*   Created: 2022/04/23 09:34:17 by cvidon            #+#    #+#             */
+/*   Updated: 2022/04/23 10:26:12 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_dlist	*ft_dlstmap(t_dlist *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*cpy;
+	t_dlist	*cpy;
+	t_dlist	*new;
+	t_dlist	*tmp;
 
-	if (!new)
-		return ;
-	if (!*lst)
+	cpy = lst;
+	if (!lst || !f)
+		return (NULL);
+	new = 0;
+	while (cpy)
 	{
-		*lst = new;
-		return ;
-	}
-	cpy = *lst;
-	while (cpy->next)
+		tmp = ft_dlstnew((*f)(cpy->content));
+		if (!tmp)
+		{
+			ft_dlstclear(&tmp, del);
+			ft_dlstclear(&new, del);
+			return (NULL);
+		}
+		ft_dlstadd_back(&new, tmp);
 		cpy = cpy->next;
-	cpy->next = new;
+	}
+	return (new);
 }

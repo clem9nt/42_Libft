@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_dlstadd_back.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 15:39:15 by cvidon            #+#    #+#             */
-/*   Updated: 2022/04/23 09:38:51 by cvidon           ###   ########.fr       */
+/*   Created: 2022/04/23 09:33:18 by cvidon            #+#    #+#             */
+/*   Updated: 2022/04/23 10:17:03 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_dlstadd_back(t_dlist **lst, t_dlist *new)
 {
-	t_list	*cpy;
+	t_dlist	*cpy;
 
 	if (!new)
 		return ;
@@ -27,4 +27,5 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	while (cpy->next)
 		cpy = cpy->next;
 	cpy->next = new;
+	new->prev = cpy;
 }

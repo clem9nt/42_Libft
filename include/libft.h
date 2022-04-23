@@ -6,7 +6,7 @@
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:50:48 by cvidon            #+#    #+#             */
-/*   Updated: 2022/04/19 16:19:21 by cvidon           ###   ########.fr       */
+/*   Updated: 2022/04/23 10:37:06 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@
 /*
  ** =========[ Structures ]========
  */
+
+/*
+ ** [ DOUBLE LINKED LIST ]
+ */
+
+typedef struct s_dlist
+{
+	void			*content;
+	struct s_dlist	*prev;
+	struct s_dlist	*next;
+}	t_dlist;
 
 /*
  ** [ LINKED LIST ]
@@ -99,18 +110,34 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 
 /*
+ ** [ DOUBLE LINKED LIST ]
+ */
+
+int		ft_dlstsize(t_dlist *lst);
+t_dlist	*ft_dlstlast(t_dlist *lst);
+t_dlist	*ft_dlstmap(t_dlist *lst, void *(*f)(void *), void (*del)(void *));
+t_dlist	*ft_dlstnew(void *content);
+void	ft_dlstadd_back(t_dlist **lst, t_dlist *new);
+void	ft_dlstadd_front(t_dlist **lst, t_dlist *new);
+void	ft_dlstclear(t_dlist **lst, void (*del)(void *));
+void	ft_dlstdelfirst(t_dlist **lst, void (*del)(void *));
+void	ft_dlstdelone(t_dlist *lst, void (*del)(void *));
+void	ft_dlstiter(t_dlist *lst, void (*f)(void *));
+
+/*
  ** [ LINKED LIST ]
  */
 
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **alst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **alst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstdelfirst(t_list **lst, void (*del)(void *));
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 /*
  ** [ FT_PRINTF ]
