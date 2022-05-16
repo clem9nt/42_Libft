@@ -28,6 +28,7 @@ SRCS 		= all/ft_atoi.c 						\
 			  all/ft_strlcpy.c 						\
 			  all/ft_strlen.c 						\
 			  all/ft_strncmp.c 						\
+			  all/ft_strcmp.c 						\
 			  all/ft_strnstr.c 						\
 			  all/ft_strrchr.c 						\
 			  all/ft_tolower.c 						\
