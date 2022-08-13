@@ -36,7 +36,7 @@ static int	ft_has_nl(char *str)
  ** @return     A string made of s1 + s2.
  */
 
-char	*ft_strjoin(char *s1, const char *s2)
+static char	*ft_strjoin_gnl(char *s1, const char *s2)
 {
 	char	*s3;
 	char	*p1;
@@ -67,7 +67,7 @@ char	*ft_strjoin(char *s1, const char *s2)
  ** @return     The next line to be print from temp content.
  */
 
-char	*ft_newline(const char *temp)
+static char	*ft_newline(const char *temp)
 {
 	size_t	i;
 
@@ -86,7 +86,7 @@ char	*ft_newline(const char *temp)
  ** @return     A new temp starting from the next line to read or NULL.
  */
 
-char	*ft_newtemp(char *temp)
+static char	*ft_newtemp(char *temp)
 {
 	char			*new;
 	unsigned int	i;
