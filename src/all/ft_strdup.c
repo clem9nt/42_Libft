@@ -12,19 +12,25 @@
 
 #include "libft.h"
 
+/*
+ ** @brief      Duplicate the given string into a new malloc-ed memory space.
+ **
+ ** @param[in]  The string to duplicate.
+ ** @return     A pointer to the duplication.
+ */
+
 char	*ft_strdup(const char *s1)
 {
 	char	*s2;
-	char	*ptr;
+	char	*p2;
 
 	if (!s1)
 		return (NULL);
-	s2 = malloc (sizeof(char) * (ft_strlen(s1) + 1));
+	s2 = malloc (sizeof (char) * (ft_strlen(s1) + 1));
 	if (!s2)
 		return (NULL);
-	ptr = s2;
+	p2 = s2;
 	while (*s1)
-		*ptr++ = *s1++;
-	*ptr = *s1;
-	return (s2);
+		*p2++ = *s1++;
+	return (*p2 = 0, s2);
 }

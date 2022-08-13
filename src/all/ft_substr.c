@@ -12,29 +12,32 @@
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*ss;
-	size_t	strlen;
+/*
+ ** @brief      Extract a substring from a larger string (with malloc).
+ **
+ ** @param[in]  str the string that contain the cherished substring.
+ ** @param[in]  start the beginning of the substring.
+ ** @param[in]  size the length of the substring.
+ ** @return     The cherished substring.
+ */
 
-	if (!s)
+char	*ft_substr(const char *str, unsigned int start, size_t size)
+{
+	size_t	len;
+	char	*sub;
+
+	if (!str)
 		return (NULL);
-	strlen = ft_strlen(s);
-	if (start >= strlen)
-		return (ft_strdup(""));
-	if (len < strlen)
-		ss = malloc (sizeof(char) * (len + 1));
-	else
-		ss = malloc (sizeof(char) * (len - start + 1));
-	if (!ss)
+	len = ft_strlen (str);
+	if (start >= len)
 		return (NULL);
-	i = 0;
-	while (s[start + i] && i < len)
-	{
-		ss[i] = s[start + i];
-		i++;
-	}
-	ss[i] = '\0';
-	return (ss);
+	if (len - start < size)
+		size = len - start;
+	sub = malloc (sizeof (char) * (size + 1));
+	if (!sub)
+		return (NULL);
+	sub[size] = 0;
+	while (size--)
+		sub[size] = str[start + size];
+	return (sub);
 }

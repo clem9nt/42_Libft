@@ -120,12 +120,15 @@ fclean: clean
 
 norm:
 	@norminette -R CheckForbiddenSourceHeader $(SRCS) | grep -v "OK" || true
+	@norminette $(SRCS) | grep -v "OK" || true
 	@$(ECHO)"$(G)checked$(END) sources\n"
 	@norminette -R CheckDefine $(INC_DIR) | grep -v "OK" || true
+	@norminette $(INC_DIR) | grep -v "OK" || true
 	@$(ECHO)"$(G)checked$(END) headers\n"
 
 update:
 	@git pull
+	@git submodule update --init
 	@$(ECHO)"$(G)updated$(END)\n"
 
 re: fclean all
