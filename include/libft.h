@@ -31,6 +31,7 @@
 
 /*
  ** [ GET NEXT LINE ]
+ **
  ** TODO get_next_line.h
  */
 
@@ -83,7 +84,12 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
+
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_free_s1(char *s1, const char *s2);
+char	*ft_strjoin_free_s2(const char *s1, char *s2);
+char	*ft_strjoin_free(char *s1, char *s2);
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
@@ -163,6 +169,9 @@ int		ft_printf(const char *fmt, ...);
 
 /*
  ** [ GET_NEXT_LINE ]
+ **
+ ** TODO ft_strjoin_free_s1, ft_strjoin_free_s2 and ft_strjoin_free
+ ** use -> _s1 instead _gnl
  */
 
 char	*get_next_line(int fd);

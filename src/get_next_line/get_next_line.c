@@ -19,45 +19,12 @@
  ** @return     True or false.
  */
 
-static int	ft_has_nl(char *str)
+int	ft_has_nl(const char *str)
 {
 	if (str)
-		while (*str)
-			if (*str++ == '\n')
-				return (1);
-	return (0);
-}
-
-/*
- ** @brief      Concatenate two strings into a new string (with malloc).
- **
- ** @param[in]  s1 the first string (will be free).
- ** @param[in]  s2 the second string.
- ** @return     A string made of s1 + s2.
- */
-
-static char	*ft_strjoin_gnl(char *s1, const char *s2)
-{
-	char	*s3;
-	char	*p1;
-	char	*p3;
-
-	if (!s1 && s2)
-		return (ft_strdup (s2));
-	if (s1 && !s2)
-		return (ft_strdup (s1));
-	if (!s1 && !s2)
-		return (ft_strdup (""));
-	s3 = malloc (sizeof (char) * (ft_strlen (s1) + ft_strlen (s2) + 1));
-	if (!s3)
-		return (free (s1), NULL);
-	p1 = s1;
-	p3 = s3;
-	while (*p1)
-		*p3++ = *p1++;
-	while (*s2)
-		*p3++ = *s2++;
-	return (*p3 = 0, free (s1), s3);
+		while (*str && *str != '\n')
+			str++;
+	return (str && *str == '\n');
 }
 
 /*
@@ -140,7 +107,7 @@ char	*get_next_line(int fd)
 		if (rd == -1)
 			return (free (buf), NULL);
 		buf[rd] = '\0';
-		temp[fd] = ft_strjoin (temp[fd], buf);
+		temp[fd] = ft_strjoin_free_s1 (temp[fd], buf);
 	}
 	free (buf);
 	if (!temp[fd])

@@ -33,7 +33,7 @@ char	*ft_substr(const char *str, unsigned int start, size_t size)
 		return (NULL);
 	if (len - start < size)
 		size = len - start;
-	sub = malloc (sizeof (char) * (size + 1));
+	sub = malloc (sizeof (*sub) * (size + 1));
 	if (!sub)
 		return (NULL);
 	sub[size] = 0;
