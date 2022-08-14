@@ -18,7 +18,7 @@ static int	ft_isspace(int c)
 		|| c == '\f' || c == '\r' || c == ' ');
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char const *str)
 {
 	int	sign;
 	int	nb;

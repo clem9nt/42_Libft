@@ -19,7 +19,7 @@
  ** @return     A pointer to the duplication.
  */
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char const *s1)
 {
 	char	*s2;
 	char	*p2;

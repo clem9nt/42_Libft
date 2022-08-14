@@ -12,18 +12,20 @@
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
-{
-	return (c == '\t' || c == '\n' || c == '\v'
-		|| c == '\f' || c == '\r' || c == ' ');
-}
+/*
+ ** @brief      Convert a numerical string to a long integer value.
+ **
+ ** @param[in]  str the numerical string to convert.
+ ** @return     a long integer value.
+ */
 
-long	ft_atol(const char *str)
+long	ft_atol(char const *str)
 {
-	int		sign;
+	long	sign;
 	long	nb;
 
-	while (ft_isspace(*str))
+	while (*str == '\t' || *str == '\n' || *str == '\v'
+		|| *str == '\f' || *str == '\r' || *str == ' ')
 		str++;
 	sign = 1;
 	if (*str == '-' || *str == '+')
@@ -33,7 +35,7 @@ long	ft_atol(const char *str)
 		str++;
 	}
 	nb = 0;
-	while (*str && ft_isdigit(*str))
+	while (*str && (*str >= '0' && *str <= '9'))
 	{
 		nb = nb * 10 + *str - '0';
 		str++;

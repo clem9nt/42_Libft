@@ -82,26 +82,26 @@ int		ft_toupper(int c);
 
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s1);
+char	*ft_strchr(char const *s, int c);
+char	*ft_strdup(char const *s1);
 
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strjoin_free_s1(char *s1, const char *s2);
-char	*ft_strjoin_free_s2(const char *s1, char *s2);
+char	*ft_strjoin_free_s1(char *s1, char const *s2);
+char	*ft_strjoin_free_s2(char const *s1, char *s2);
 char	*ft_strjoin_free(char *s1, char *s2);
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-char	*ft_strrchr(const char *s, int c);
+char	*ft_strnstr(char const *haystack, char const *needle, size_t len);
+char	*ft_strrchr(char const *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-int		ft_atoi(const char *str);
-long	ft_atol(const char *str);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_strcmp(const char *s1, const char *s2);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlen(const char *s);
+int		ft_atoi(char const *str);
+long	ft_atol(char const *str);
+int		ft_strncmp(char const *s1, char const *s2, size_t n);
+int		ft_strcmp(char const *s1, char const *s2);
+size_t	ft_strlcat(char *dst, char const *src, size_t dstsize);
+size_t	ft_strlcpy(char *dst, char const *src, size_t dstsize);
+size_t	ft_strlen(char const *s);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -165,7 +165,7 @@ int		ft_hx1(va_list args);
 int		ft_hx2(va_list args);
 int		ft_ptr(va_list args);
 /* ft_printf.c */
-int		ft_printf(const char *fmt, ...);
+int		ft_printf(char const *fmt, ...);
 
 /*
  ** [ GET_NEXT_LINE ]

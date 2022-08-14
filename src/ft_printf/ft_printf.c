@@ -16,7 +16,7 @@
  * Read and parse the input
  */
 
-static int	ft_read(int (*options[8])(va_list), const char *fmt, va_list args)
+static int	ft_read(int (*options[8])(va_list), char const *fmt, va_list args)
 {
 	int	ret;
 	int	id;
@@ -49,7 +49,7 @@ static int	ft_read(int (*options[8])(va_list), const char *fmt, va_list args)
  * Initialize the supported flags
  */
 
-int	ft_printf(const char *fmt, ...)
+int	ft_printf(char const *fmt, ...)
 {
 	int		(*options[8])(va_list);
 	va_list	args;

@@ -18,9 +18,9 @@
  ** @param      str a string.
  */
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char const *str)
 {
-	const char	*ptr;
+	char const	*ptr;
 
 	ptr = str;
 	while (*ptr)
