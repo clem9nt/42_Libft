@@ -32,7 +32,8 @@
 /*
  ** [ GET NEXT LINE ]
  **
- ** TODO get_next_line.h
+ ** TODO add as a submodule from the repo
+ ** get_next_line.h
  */
 
 # ifndef BUFFER_SIZE
@@ -169,9 +170,6 @@ int		ft_printf(char const *fmt, ...);
 
 /*
  ** [ GET_NEXT_LINE ]
- **
- ** TODO ft_strjoin_free_s1, ft_strjoin_free_s2 and ft_strjoin_free
- ** use -> _s1 instead _gnl
  */
 
 char	*get_next_line(int fd);
