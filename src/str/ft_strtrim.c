@@ -12,65 +12,27 @@
 
 #include "libft.h"
 
-static int	ft_matchset(char c1, const char *set)
-{
-	while (*set)
-	{
-		if (c1 == *set)
-			return (1);
-		set++;
-	}
-	return (0);
-}
-
-static size_t	ft_allocsize(char const *s1, char const *set)
-{
-	size_t	len;
-
-	len = 0;
-	while (ft_matchset(*s1, set))
-		s1++;
-	while (s1[len + 1])
-		len++;
-	while (ft_matchset(s1[len], set))
-		len--;
-	return (len + 1);
-}
-
-static int	ft_shield(char const *s1, char const *set)
-{
-	if (!s1 || !set)
-		return (1);
-	while (*s1 && ft_matchset(*s1, set))
-		s1++;
-	if (*s1 == '\0')
-		return (1);
-	return (0);
-}
+/*
+ ** @brief		Trim beginning and end of string with specified characters.
+ **
+ ** "Description Allocates (with malloc(3)) and returns a copy of s1 with the
+ ** characters specified in set removed from the beginning and the end of the
+ ** string."
+ **
+ ** @param[in]	s1 a string to be trimmed.
+ ** @param[in]	set a set of characters to trim.
+ **
+ ** @return		The trimmed string or NULL.
+ */
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
 	size_t	i;
 
-	if (ft_shield(s1, set))
-		return (ft_strdup(""));
-	str = malloc(sizeof(char) * ft_allocsize(s1, set) + 1);
-	if (!str)
-		return (0);
-	i = 0;
-	while (ft_matchset(*s1, set))
+	while (*s1 && ft_strchr (set, *s1))
 		s1++;
-	while (s1[i + 1])
-		i++;
-	while (ft_matchset(s1[i], set))
+	i = ft_strlen (s1);
+	while (i && ft_strchr (set, s1[i]))
 		i--;
-	str[i + 1] = '\0';
-	while (i)
-	{
-		str[i] = s1[i];
-		i--;
-	}
-	str[i] = s1[i];
-	return (str);
+	return (ft_substr (s1, 0, i + 1));
 }

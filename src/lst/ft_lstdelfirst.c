@@ -13,7 +13,7 @@
 #include "libft.h"
 
 /*
- ** @brief      Delete the first element of a list.
+ ** @brief      Delete first element of list.
  **
  ** @param[out] lst a list.
  ** @param[in]  del a function (ie. free).
@@ -28,9 +28,9 @@ void	ft_lstdelfirst(t_list **lst, void (*del)(void *))
 		return ;
 	if (!temp->next)
 	{
-		ft_lstdelone(temp, del);
+		ft_lstdelone (temp, del);
 		return ;
 	}
 	*lst = (*lst)->next;
-	ft_lstdelone(temp, del);
+	ft_lstdelone (temp, del);
 }

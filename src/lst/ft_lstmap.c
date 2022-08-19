@@ -13,17 +13,16 @@
 #include "libft.h"
 
 /*
- ** @brief      Apply a function to the content of all the element of a list
- **             into a new list.
+ ** @brief      Apply function to content of all list's elements into new list.
  **
- ** Iterates through 'lst' and applies 'f' to the content of each element.
- ** Creates a new list resulting of the successive applications of 'f'.
- ** The 'del' function is used to delete the content of an element if needed.
+ ** "Iterates through lst and applies f to the content of each element.
+ ** Creates a new list resulting of the successive applications of f.
+ ** The del function is used to delete the content of an element if needed."
  **
  ** @param[out] lst a list.
  ** @param[in]  f a function.
  ** @param[in]  del a function (ie. free).
- ** @return     A new list or NULL if something went wrong.
+ ** @return     A new list or NULL.
  */
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
@@ -33,20 +32,20 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*tmp;
 
 	cpy = lst;
-	if (!lst || !f)
-		return (NULL);
 	new = 0;
-	while (cpy)
+	while (1)
 	{
-		tmp = ft_lstnew((*f)(cpy->content));
+		tmp = ft_lstnew ((*f)(cpy->content));
 		if (!tmp)
 		{
-			ft_lstclear(&tmp, del);
-			ft_lstclear(&new, del);
+			ft_lstclear (&tmp, del);
+			ft_lstclear (&new, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&new, tmp);
+		ft_lstadd_back (&new, tmp);
 		cpy = cpy->next;
+		if (!cpy)
+			break ;
 	}
 	return (new);
 }

@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstlast.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 09:34:11 by cvidon            #+#    #+#             */
-/*   Updated: 2022/04/23 09:38:12 by cvidon           ###   ########.fr       */
+/*   Created: 2021/11/29 15:39:52 by cvidon            #+#    #+#             */
+/*   Updated: 2021/11/29 15:39:52 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
- ** @brief      Find last element of a list.
+ ** @brief      Output a number to a stream.
  **
- ** "Returns the last node of the list."
+ ** @param[in]  n a number.
+ ** @param[in]  fd a stream.
  **
- ** @param[in]  lst a list.
- ** @return     The last element of a list or NULL.
+ ** @see        PUTC(3) <stdio.h>
  */
 
-t_dlist	*ft_dlstlast(t_dlist *lst)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	long	ln;
+
+	ln = n;
+	if (ln < 0)
+	{
+		ln *= -1;
+		write (fd, "-", 1);
+	}
+	if (ln > 9)
+		ft_putnbr_fd ((int)(ln / 10), fd);
+	write (fd, &"0123456789"[ln % 10], 1);
 }

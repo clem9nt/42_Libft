@@ -10,6 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+ ** @brief      Upper case to lower case letter conversion.
+ **
+ ** "The tolower() function converts an upper-case letter to the corresponding
+ ** lower-case letter.  The argument must be representable as an unsigned char or
+ ** the value of EOF."
+ **
+ ** @see        TOLOWER(3) <ctype.h>
+ */
+
 int	ft_tolower(int c)
 {
 	return (c + (c >= 'A' && c <= 'Z') * 32);

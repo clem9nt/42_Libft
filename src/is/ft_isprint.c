@@ -10,12 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 /*
  ** @brief      Check for any printable character including space.
  **
- ** @see        ISPRINT <ctype.h>
+ ** @see        ISPRINT(3) <ctype.h>
  */
 
 int	ft_isprint(int c)

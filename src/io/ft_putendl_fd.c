@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstlast.c                                      :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 09:34:11 by cvidon            #+#    #+#             */
-/*   Updated: 2022/04/23 09:38:12 by cvidon           ###   ########.fr       */
+/*   Created: 2021/11/29 15:39:48 by cvidon            #+#    #+#             */
+/*   Updated: 2021/12/01 08:33:20 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
- ** @brief      Find last element of a list.
+ ** @brief      Output a string to a stream.
  **
- ** "Returns the last node of the list."
+ ** Add a newline.
  **
- ** @param[in]  lst a list.
- ** @return     The last element of a list or NULL.
+ ** @param[in]  s a string.
+ ** @param[in]  fd a stream.
+ **
+ ** @see        PUTC(3) <stdio.h>
  */
 
-t_dlist	*ft_dlstlast(t_dlist *lst)
+void	ft_putendl_fd(char *s, int fd)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	write (fd, s, ft_strlen (s));
+	write (fd, "\n", 1);
 }

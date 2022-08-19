@@ -13,7 +13,10 @@
 #include "libft.h"
 
 /*
- ** @brief      Apply a function to the content of all the element of a list.
+ ** @brief      Apply function to content of all list's elements.
+ **
+ ** "Iterates the list lst and applies the function f on the content of each
+ ** node."
  **
  ** @param[out] lst a list.
  ** @param[in]  f a function.
@@ -24,11 +27,11 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	t_list	*cpy;
 
 	cpy = lst;
-	if (!lst || !f)
-		return ;
-	while (cpy)
+	while (1)
 	{
-		f(cpy->content);
+		f (cpy->content);
 		cpy = cpy->next;
+		if (!cpy)
+			break ;
 	}
 }

@@ -15,15 +15,19 @@
 /*
  ** @brief      Create a new list.
  **
+ ** "Allocates (with malloc(3)) and returns a new node.  The member variable
+ ** content is initialized with the value of the parameter content. The variable
+ ** next is initialized to NULL."
+ **
  ** @param[in]  content the value to initialize the head's content with.
- ** @return     The head of the new list.
+ ** @return     The head of the new list or NULL.
  */
 
 t_dlist	*ft_dlstnew(void *content)
 {
 	t_dlist	*first;
 
-	first = malloc(sizeof(t_dlist));
+	first = malloc (sizeof (t_dlist));
 	if (!first)
 		return (NULL);
 	first->content = content;

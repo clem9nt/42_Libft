@@ -13,7 +13,9 @@
 #include "libft.h"
 
 /*
- ** @brief      Add an element to the front of a list.
+ ** @brief      Add element to list front.
+ **
+ ** "Adds the node new at the beginning of the list."
  **
  ** @param[out] lst a list.
  ** @param[in]  new the element to add.

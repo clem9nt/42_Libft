@@ -13,9 +13,13 @@
 #include "libft.h"
 
 /*
- ** @brief      Delete an arbitrary element from a list.
+ ** @brief      Delete arbitrary element of list.
  **
- ** @param[out] lst a list.
+ ** "Takes as a parameter a node and frees the memory of the node's content
+ ** using the function del given as a parameter and free the node. The memory of
+ ** next must not be freed."
+ **
+ ** @param[in]  lst a list.
  ** @param[in]  del a function (ie. free).
  */
 
@@ -23,5 +27,5 @@ void	ft_dlstdelone(t_dlist *lst, void (*del)(void *))
 {
 	if (!lst || !del)
 		return ;
-	del(lst);
+	del (lst);
 }

@@ -13,10 +13,12 @@
 #include "libft.h"
 
 /*
- ** @brief      Convert a numerical string to a long integer value.
+ ** @brief      Convert ASCII string to long.
  **
- ** @param[in]  str the numerical string to convert.
- ** @return     a long integer value.
+ ** "The atol() function converts the initial portion of the string pointed to
+ ** by str to long representation."
+ **
+ ** @see        ATOL(3) <stdlib.h>
  */
 
 long	ft_atol(char const *str)

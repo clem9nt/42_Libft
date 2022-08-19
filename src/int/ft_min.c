@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstlast.c                                      :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 09:34:11 by cvidon            #+#    #+#             */
-/*   Updated: 2022/04/23 09:38:12 by cvidon           ###   ########.fr       */
+/*   Created: 2022/01/28 07:38:24 by cvidon            #+#    #+#             */
+/*   Updated: 2022/01/28 07:42:23 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 /*
- ** @brief      Find last element of a list.
+ ** @brief      Return the smallest of two numbers.
  **
- ** "Returns the last node of the list."
- **
- ** @param[in]  lst a list.
- ** @return     The last element of a list or NULL.
+ ** @param[in]  a a number.
+ ** @param[in]  b a number.
+ ** @return     The smallest number between a and b.
  */
 
-t_dlist	*ft_dlstlast(t_dlist *lst)
+int	ft_min(int a, int b)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	return (a * (a <= b) + b * (a > b));
 }

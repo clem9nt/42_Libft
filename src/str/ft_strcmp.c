@@ -13,12 +13,12 @@
 #include "libft.h"
 
 /*
- ** @brief      Compare two strings.
+ ** @brief      Compare strings.
  **
- ** @param[in]  s1 the first string.
- ** @param[in]  s2 the second string.
- ** @return     The value corresponding to the difference between the ASCII
- **             value of the two different characters encountered, or 0.
+ ** "The strcmp() and strncmp() functions lexicographically compare the
+ ** null-terminated strings s1 and s2."
+ **
+ ** @see        STRCHR(3) <string.h>
  */
 
 int	ft_strcmp(char const *s1, char const *s2)

@@ -13,10 +13,13 @@
 #include "libft.h"
 
 /*
- ** @brief      Duplicate the given string into a new malloc-ed memory space.
+ ** @brief      Save a copy of a string.
  **
- ** @param[in]  The string to duplicate.
- ** @return     A pointer to the duplication.
+ ** "The strdup() function allocates sufficient memory for a copy of the string
+ ** s1, does the copy, and returns a pointer to it.  The pointer may
+ ** subsequently be used as an argument to the function free(3)."
+ **
+ ** @see        STRDUP(3) <string.h>
  */
 
 char	*ft_strdup(char const *str)
@@ -24,8 +27,6 @@ char	*ft_strdup(char const *str)
 	char	*dup;
 	char	*ptr;
 
-	if (!str)
-		return (NULL);
 	dup = malloc (sizeof (*dup) * (ft_strlen(str) + 1));
 	if (!dup)
 		return (NULL);

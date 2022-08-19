@@ -13,7 +13,11 @@
 #include "libft.h"
 
 /*
- ** @brief      Clear a list starting from the given element till the last one.
+ ** @brief      Clear a list starting from an element till the last one.
+ **
+ ** "Deletes and frees the given node and every successor of that node, using
+ ** the function del and free(3).  Finally, the pointer to the list must be
+ ** set to NULL."
  **
  ** @param[out] lst a list.
  ** @param[in]  del a function (ie. free).

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstlast.c                                      :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 09:34:11 by cvidon            #+#    #+#             */
-/*   Updated: 2022/04/23 09:38:12 by cvidon           ###   ########.fr       */
+/*   Created: 2021/11/29 15:39:13 by cvidon            #+#    #+#             */
+/*   Updated: 2021/11/29 15:39:13 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 /*
- ** @brief      Find last element of a list.
+ ** @brief      White-space character test.
  **
- ** "Returns the last node of the list."
+ ** "The isspace() function tests for the white-space characters.  For any
+ ** locale, this includes the following standard characters:
+ ** '\t' '\n' '\v' '\f' '\r' ' '"
  **
- ** @param[in]  lst a list.
- ** @return     The last element of a list or NULL.
+ ** @see        ISSPACE(3) <ctype.h>
  */
 
-t_dlist	*ft_dlstlast(t_dlist *lst)
+int	ft_isspace(int c)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	return (c == '\t' || c == '\n' || c == '\v'
+		|| c == '\f' || c == '\r' || c == ' ');
 }

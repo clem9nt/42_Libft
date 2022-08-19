@@ -12,6 +12,16 @@
 
 #include "libft.h"
 
+/*
+ ** @brief      Compare strings.
+ **
+ ** "The strncmp() function compares not more than n characters.  Because
+ ** strncmp() is designed for comparing strings rather than binary data,
+ ** characters that appear after a ‘\0’ character are not compared."
+ **
+ ** @see        STRNCMP(3) <string.h>
+ */
+
 int	ft_strncmp(char const *s1, char const *s2, size_t n)
 {
 	size_t	i;

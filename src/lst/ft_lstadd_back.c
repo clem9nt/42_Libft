@@ -13,7 +13,9 @@
 #include "libft.h"
 
 /*
- ** @brief      Add an element to the back of a list.
+ ** @brief      Add element to list back.
+ **
+ ** "Adds the node new at the end of the list."
  **
  ** @param[out] lst a list.
  ** @param[in]  new the element to add.

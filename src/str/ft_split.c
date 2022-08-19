@@ -12,7 +12,15 @@
 
 #include "libft.h"
 
-static size_t	ft_count(char const *s, char c)
+/*
+ ** @brief      Count the words of a string.
+ **
+ ** @param[in]  s a string.
+ ** @param[in]  c a word separator character.
+ ** @return     The number of occurrence.
+ */
+
+static size_t	ft_count_words(char const *s, char c)
 {
 	size_t	count;
 
@@ -30,27 +38,44 @@ static size_t	ft_count(char const *s, char c)
 	return (count);
 }
 
+/*
+ ** @brief      Return the first word of a string in a new memory area.
+ **
+ ** @param[in]  s a string.
+ ** @param[in]  c a word separator character.
+ ** @return     The first word of the string.
+ */
+
 static char	*ft_fill(char const *s, char c)
 {
 	size_t	size;
-	char	*arr;
+	char	*str;
 	int		index;
 
 	size = 0;
 	while (s[size] != c && s[size])
 		size++;
-	arr = malloc(sizeof(char) * (size + 1));
+	str = malloc(sizeof(char) * (size + 1));
+	if (!str)
+		return (NULL);
 	index = 0;
 	while (s[index] != c && s[index])
 	{
-		arr[index] = s[index];
+		str[index] = s[index];
 		index++;
 	}
-	arr[index] = '\0';
-	return (arr);
+	str[index] = '\0';
+	return (str);
 }
 
-static void	*ft_backfree(char **tab, int i)
+/*
+ ** @brief      Reverse free an array of string.
+ **
+ ** @param[in]  tab an array of string.
+ ** @param[in]  i the array index to start from.
+ */
+
+static void	ft_backfree(char **tab, int i)
 {
 	while (i + 1)
 	{
@@ -59,18 +84,27 @@ static void	*ft_backfree(char **tab, int i)
 	}
 	free (tab);
 	tab = NULL;
-	return (tab);
 }
+
+/*
+ ** @brief      Split a string into words.
+ **
+ ** "Allocates (with malloc(3)) and returns an array of strings obtained by
+ ** splitting ’s’ using the character ’c’ as a delimiter. The array must end
+ ** with a NULL pointer."
+ **
+ ** @param[in]  s a string.
+ ** @param[in]  c a word separator character.
+ ** @return     An array of strings resulting from split or NULL.
+ */
 
 char	**ft_split(char const *s, char c)
 {
 	int		i;
 	char	**tab;
 
-	if (!s)
-		return (NULL);
 	i = 0;
-	tab = malloc (sizeof(char *) * (ft_count(s, c) + 1));
+	tab = malloc (sizeof(char *) * (ft_count_words(s, c) + 1));
 	if (!tab)
 		return (NULL);
 	while (*s)
@@ -79,7 +113,7 @@ char	**ft_split(char const *s, char c)
 		{
 			tab[i] = ft_fill(s, c);
 			if (!tab[i])
-				return (ft_backfree(tab, i));
+				return (ft_backfree(tab, i), NULL);
 			i++;
 			while (*s != c && *(s + 1))
 				s++;

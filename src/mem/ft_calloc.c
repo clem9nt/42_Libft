@@ -27,6 +27,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	unsigned char	*ptr;
 	size_t			len;
 
+	if (nmemb >= INT_MAX || size >= INT_MAX)
+		return (NULL);
 	ptr = malloc(nmemb * size);
 	if (!ptr)
 		return (NULL);

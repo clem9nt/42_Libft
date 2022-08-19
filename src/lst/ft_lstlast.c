@@ -13,10 +13,12 @@
 #include "libft.h"
 
 /*
- ** @brief      Find the last element of a list.
+ ** @brief      Find last element of a list.
+ **
+ ** "Returns the last node of the list."
  **
  ** @param[in]  lst a list.
- ** @return     The last element of a list.
+ ** @return     The last element of a list or NULL.
  */
 
 t_list	*ft_lstlast(t_list *lst)

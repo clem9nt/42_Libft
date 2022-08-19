@@ -1,106 +1,97 @@
-# ========== [ Project files ]
+# @author   cvidon@42
+# @brief    Makefile for C programs that does not require any dependency.
 
-# TODO set name
-PREFIX		= libft
-NAME 		= $(PREFIX).a
-
-INC_DIR 	= include
-INC			= $(INC_DIR)
-
-# TODO set sources
+INC_DIR		= include
 SRC_DIR		= src
-SRCS 		= all/ft_atoi.c 						\
-			  all/ft_atol.c 						\
-			  all/ft_bzero.c 						\
-			  all/ft_calloc.c 						\
-			  all/ft_isalnum.c 						\
-			  all/ft_isalpha.c 						\
-			  all/ft_isascii.c 						\
-			  all/ft_isdigit.c 						\
-			  all/ft_isprint.c 						\
-			  all/ft_memchr.c 						\
-			  all/ft_memcmp.c 						\
-			  all/ft_memcpy.c 						\
-			  all/ft_memmove.c 						\
-			  all/ft_memset.c 						\
-			  all/ft_strchr.c 						\
-			  all/ft_strlcat.c 						\
-			  all/ft_strlcpy.c 						\
-			  all/ft_strlen.c 						\
-			  all/ft_strncmp.c 						\
-			  all/ft_strcmp.c 						\
-			  all/ft_strnstr.c 						\
-			  all/ft_strrchr.c 						\
-			  all/ft_tolower.c 						\
-			  all/ft_toupper.c 						\
-			  all/ft_strdup.c 						\
-			  all/ft_substr.c 						\
-			  all/ft_strjoin.c 						\
-			  all/ft_strtrim.c 						\
-			  all/ft_split.c 						\
-			  all/ft_itoa.c 						\
-			  all/ft_strmapi.c 						\
-			  all/ft_striteri.c						\
-			  all/ft_putchar_fd.c 					\
-			  all/ft_putstr_fd.c 					\
-			  all/ft_putendl_fd.c					\
-			  all/ft_putnbr_fd.c					\
-			  linked_list/ft_lstadd_back.c 			\
-			  linked_list/ft_lstadd_front.c			\
-			  linked_list/ft_lstclear.c				\
-			  linked_list/ft_lstdelfirst.c			\
-			  linked_list/ft_lstdelone.c 			\
-			  linked_list/ft_lstiter.c 				\
-			  linked_list/ft_lstlast.c 				\
-			  linked_list/ft_lstmap.c				\
-			  linked_list/ft_lstnew.c 				\
-			  linked_list/ft_lstsize.c 				\
-			  double_linked_list/ft_dlstadd_back.c 	\
-			  double_linked_list/ft_dlstadd_front.c	\
-			  double_linked_list/ft_dlstclear.c		\
-			  double_linked_list/ft_dlstdelfirst.c	\
-			  double_linked_list/ft_dlstdelone.c 	\
-			  double_linked_list/ft_dlstiter.c 		\
-			  double_linked_list/ft_dlstlast.c 		\
-			  double_linked_list/ft_dlstmap.c		\
-			  double_linked_list/ft_dlstnew.c 		\
-			  double_linked_list/ft_dlstsize.c 		\
-			  ft_printf/ft_printf.c 				\
-			  ft_printf/options1.c 					\
-			  ft_printf/options2.c 					\
-			  ft_printf/utils.c						\
-			  get_next_line/get_next_line.c			\
-			  extra/ft_min.c 						\
-			  extra/ft_max.c 						\
-			  extra/ft_abs.c
+OBJ_DIR		= obj
+
+SRCS		= dlst/ft_dlstadd_back.c \
+			  dlst/ft_dlstadd_front.c \
+			  dlst/ft_dlstclear.c \
+			  dlst/ft_dlstdelfirst.c \
+			  dlst/ft_dlstdelone.c \
+			  dlst/ft_dlstiter.c \
+			  dlst/ft_dlstlast.c \
+			  dlst/ft_dlstmap.c \
+			  dlst/ft_dlstnew.c \
+			  dlst/ft_dlstsize.c \
+			  lst/ft_lstadd_back.c \
+			  lst/ft_lstadd_front.c \
+			  lst/ft_lstclear.c \
+			  lst/ft_lstdelfirst.c \
+			  lst/ft_lstdelone.c \
+			  lst/ft_lstiter.c \
+			  lst/ft_lstlast.c \
+			  lst/ft_lstmap.c \
+			  lst/ft_lstnew.c \
+			  lst/ft_lstsize.c \
+			  is/ft_isalnum.c \
+			  is/ft_isalpha.c \
+			  is/ft_isascii.c \
+			  is/ft_isdigit.c \
+			  is/ft_isprint.c \
+			  is/ft_isspace.c \
+			  int/ft_abs.c \
+			  int/ft_max.c \
+			  int/ft_min.c \
+			  int/ft_numlen.c \
+			  mem/ft_bzero.c \
+			  mem/ft_calloc.c \
+			  mem/ft_memchr.c \
+			  mem/ft_memcmp.c \
+			  mem/ft_memcpy.c \
+			  mem/ft_memmove.c \
+			  mem/ft_memset.c \
+			  io/ft_get_next_line.c \
+			  io/ft_putchar_fd.c \
+			  io/ft_putendl_fd.c \
+			  io/ft_putnbr_fd.c \
+			  io/ft_putstr_fd.c \
+			  str/ft_split.c \
+			  str/ft_strchr.c \
+			  str/ft_strcmp.c \
+			  str/ft_strdup.c \
+			  str/ft_striteri.c \
+			  str/ft_strjoin.c \
+			  str/ft_strjoin_free.c \
+			  str/ft_strjoin_free_s1.c \
+			  str/ft_strjoin_free_s2.c \
+			  str/ft_strlcat.c \
+			  str/ft_strlcpy.c \
+			  str/ft_strlen.c \
+			  str/ft_strmapi.c \
+			  str/ft_strncmp.c \
+			  str/ft_strnstr.c \
+			  str/ft_strrchr.c \
+			  str/ft_strtrim.c \
+			  str/ft_substr.c \
+			  to/ft_atoi.c \
+			  to/ft_atol.c \
+			  to/ft_itoa.c \
+			  to/ft_tolower.c \
+			  to/ft_toupper.c \
+
+CC			= clang
+CFLAGS		= -Wall -Wextra -Werror -Wconversion -Wsign-conversion
+CPPFLAGS	= -Iinclude
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
+OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+NAME		= libft.a
 
-OBJ_DIR 	= obj
-OBJS 		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+#------------------------------------------------#
+#	SHELL CMDS									 #
+#------------------------------------------------#
 
-# ========== [ Compiler flags ]
+RM			= rm -rf
+VALGRIND	= valgrind -q --leak-check=yes --show-leak-kinds=all
 
-CC 			= gcc
+#------------------------------------------------#
+#	RECIPES										 #
+#------------------------------------------------#
 
-# TODO set extra compiler flags
-CFLAGS 		=
-
-# TODO set extra linker flags
-CPPFLAGS	=
-
-CFLAGS 		+= -Wall -Wextra -Werror -Wconversion -Wsign-conversion
-CPPFLAGS	+= $(INC:%=-I%)
-
-# ========== [ Misc ]
-
-RM 			= rm -rf
-
-# ========== [ Recipe ]
+.PHONY: all clean fclean re norm update
 
 all: $(NAME)
-
-sanitizer: CFLAGS += -fsanitize=address,undefined,signed-integer-overflow
-sanitizer: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
@@ -118,24 +109,24 @@ clean:
 fclean: clean
 	@[ -f "$(NAME)" ] && $(RM) $(NAME) && $(ECHO)"$(R)removed$(END) $(NAME)\n" || true
 
+re : fclean all
+
+san_addr: CC := gcc
+san_addr: CFLAGS := $(CFLAGS) -fsanitize=address,undefined,signed-integer-overflow
+san_addr: $(NAME)
+
 norm:
-	@norminette -R CheckForbiddenSourceHeader $(SRCS) | grep -v "OK" || true
-	@norminette $(SRCS) | grep -v "OK" || true
-	@$(ECHO)"$(G)checked$(END) sources\n"
-	@norminette -R CheckDefine $(INC_DIR) | grep -v "OK" || true
-	@norminette $(INC_DIR) | grep -v "OK" || true
-	@$(ECHO)"$(G)checked$(END) headers\n"
+	@norminette | grep -v "OK" || true
+	@$(ECHO)"$(G)checked norm$(END)\n"
 
 update:
 	@git pull
 	@git submodule update --init
 	@$(ECHO)"$(G)updated$(END)\n"
 
-re: fclean all
-
-.PHONY: all clean fclean norm update re
-
-# ========== [ Stdout ]
+#------------------------------------------------#
+#	STDOUT										 #
+#------------------------------------------------#
 
 R		= $(shell tput setaf 1)
 G		= $(shell tput setaf 2)
@@ -146,4 +137,4 @@ C		= $(shell tput setaf 6)
 W		= $(shell tput setaf 7)
 K		= $(shell tput setaf 8)
 END		= $(shell tput sgr0)
-ECHO  	= echo -n "\r\033[K$(PREFIX): "
+ECHO	= echo -n "\r\033[K$(NAME): "

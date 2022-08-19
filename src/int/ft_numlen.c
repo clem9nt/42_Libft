@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstlast.c                                      :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 09:34:11 by cvidon            #+#    #+#             */
-/*   Updated: 2022/04/23 09:38:12 by cvidon           ###   ########.fr       */
+/*   Created: 2022/01/28 07:38:24 by cvidon            #+#    #+#             */
+/*   Updated: 2022/01/28 07:42:23 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
- ** @brief      Find last element of a list.
+ ** @brief      Return the string len of a digital number.
  **
- ** "Returns the last node of the list."
- **
- ** @param[in]  lst a list.
- ** @return     The last element of a list or NULL.
+ ** @param[in]  ln a number.
+ ** @return     ln length (ie. for ln=10 len=2)
  */
 
-t_dlist	*ft_dlstlast(t_dlist *lst)
+size_t	ft_numlen(long ln)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	size_t	len;
+
+	len = 1;
+	while (ln >= 10)
+		ln = (len++, ln / 10);
+	return (len);
 }

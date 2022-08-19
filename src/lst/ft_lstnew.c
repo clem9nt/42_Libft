@@ -10,20 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 /*
  ** @brief      Create a new list.
  **
+ ** "Allocates (with malloc(3)) and returns a new node.  The member variable
+ ** content is initialized with the value of the parameter content. The variable
+ ** next is initialized to NULL."
+ **
  ** @param[in]  content the value to initialize the head's content with.
- ** @return     The head of the new list.
+ ** @return     The head of the new list or NULL.
  */
-
-#include "libft.h"
 
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*first;
 
-	first = malloc(sizeof(t_list));
+	first = malloc (sizeof (t_list));
 	if (!first)
 		return (NULL);
 	first->content = content;

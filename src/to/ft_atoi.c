@@ -12,16 +12,19 @@
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
-{
-	return (c == '\t' || c == '\n' || c == '\v'
-		|| c == '\f' || c == '\r' || c == ' ');
-}
+/*
+ ** @brief      Convert ASCII string to integer.
+ **
+ ** "The atoi() function converts the initial portion of the string pointed to
+ ** by str to int representation."
+ **
+ ** @see        ATOI(3) <stdlib.h>
+ */
 
 int	ft_atoi(char const *str)
 {
-	int	sign;
-	int	nb;
+	int		sign;
+	size_t	nb;
 
 	while (ft_isspace(*str))
 		str++;
@@ -33,10 +36,10 @@ int	ft_atoi(char const *str)
 		str++;
 	}
 	nb = 0;
-	while (*str && (*str >= '0' && *str <= '9'))
+	while (*str && ft_isdigit(*str))
 	{
-		nb = nb * 10 + *str - '0';
+		nb = nb * 10 + (size_t)(*str) - '0';
 		str++;
 	}
-	return (nb * sign);
+	return ((int)nb * sign);
 }

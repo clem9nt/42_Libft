@@ -12,6 +12,14 @@
 
 #include "libft.h"
 
+/*
+ ** @brief      Find length of string, capped at n.
+ **
+ ** @param[in]  s a string.
+ ** @param[in]  n a value to cap len.
+ ** @return     s len or n if len >= n.
+ */
+
 static size_t	ft_strnlen(char const *s, size_t n)
 {
 	size_t	len;
@@ -21,6 +29,20 @@ static size_t	ft_strnlen(char const *s, size_t n)
 		len++;
 	return (len);
 }
+
+/*
+ ** @brief      Size-bounded string copying and concatenation.
+ **
+ ** "strlcat() appends string src to the end of dst.  It will append at most
+ ** dstsize - strlen(dst) - 1 characters.  It will then NUL-terminate, unless
+ ** dstsize is 0 or the original dst string was longer than dstsize (in practice
+ ** this should not happen as it means that either dstsize is incorrect or that
+ ** dst is not a proper string)."
+ **
+ ** @see        STRLCAT(3) <string.h>
+ **
+ ** TODO replace strnlen with strlen + a cap check of its returned value.
+ */
 
 size_t	ft_strlcat(char *dst, char const *src, size_t dstsize)
 {

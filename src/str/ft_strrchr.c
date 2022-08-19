@@ -10,6 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+ ** @brief      Locate a character in string.
+ **
+ ** "The strrchr() function is identical to strchr(), except it locates the last
+ ** occurrence of c."
+ **
+ ** @see        STRRCHR(3) <string.h>
+ */
+
 char	*ft_strrchr(char const *s, int c)
 {
 	int	i;

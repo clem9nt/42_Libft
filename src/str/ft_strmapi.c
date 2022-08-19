@@ -12,13 +12,23 @@
 
 #include "libft.h"
 
+/*
+ ** @brief      Applies a function on each character of a string.
+ **
+ ** "Applies the function f to each character of the string s to create a new
+ ** string (with malloc(3)) resulting from successive applications of f."
+ **
+ ** @param[in]  s a string.
+ ** @param[in]  f a function.
+ ** @return     The string created from the successive applications of 'f' or
+ **             NULL.
+ */
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*str;
 	unsigned int	i;
 
-	if (!s)
-		return (NULL);
 	str = malloc (sizeof(char) * (ft_strlen(s) + 1));
 	if (!str)
 		return (NULL);

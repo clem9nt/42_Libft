@@ -12,15 +12,15 @@
 
 #include "libft.h"
 
-static size_t	ft_intlen(long ln)
-{
-	size_t	len;
-
-	len = 1;
-	while (ln >= 10)
-		ln = (len++, ln / 10);
-	return (len);
-}
+/*
+ ** @brief      Convert integer to ASCII string.
+ **
+ ** "Allocates (with malloc(3)) and returns a string representing the integer
+ ** received as an argument.  Negative numbers must be handled"
+ **
+ ** @param[in]  n an integer value.
+ ** @return     A string representing the integer of NULL.
+ */
 
 char	*ft_itoa(int n)
 {
@@ -33,7 +33,7 @@ char	*ft_itoa(int n)
 	sign = 0;
 	if (ln < 0)
 		ln = (sign++, -ln);
-	len = ft_intlen(ln) + sign;
+	len = ft_numlen(ln) + sign;
 	str = malloc (sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
