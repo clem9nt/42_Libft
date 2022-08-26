@@ -26,13 +26,10 @@ char	*ft_strrchr(char const *s, int c)
 	i = 0;
 	while (s[i])
 		i++;
-	while (i)
-	{
-		if (s[i] == (unsigned char)c)
-			return ((char *)&s[i]);
+	while (i && s[i] != (unsigned char)c)
 		i--;
-	}
 	if (s[i] == (unsigned char)c)
-		return ((char *)&s[i]);
-	return (0);
+		return ((char *)(s + i));
+	else
+		return (0);
 }

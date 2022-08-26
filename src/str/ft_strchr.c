@@ -23,13 +23,10 @@
 
 char	*ft_strchr(char const *s, int c)
 {
-	while (*s)
-	{
-		if (*s == (unsigned char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == c)
+	while (*s && *s != (unsigned char)c)
+		++s;
+	if (*s == (unsigned char)c)
 		return ((char *)s);
-	return (0);
+	else
+		return (0);
 }
