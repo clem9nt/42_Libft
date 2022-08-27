@@ -73,7 +73,7 @@ SRCS		= dlst/ft_dlstadd_back.c \
 
 CC			= clang
 CFLAGS		= -Wall -Wextra -Werror -Wconversion -Wsign-conversion
-CPPFLAGS	= -Iinclude
+CPPFLAGS	= -I include
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 NAME		= libft.a
@@ -89,7 +89,7 @@ VALGRIND	= valgrind -q --leak-check=yes --show-leak-kinds=all
 #	RECIPES										 #
 #------------------------------------------------#
 
-.PHONY: all clean fclean re norm update
+.PHONY: all clean fclean re san_addr norm update
 
 all: $(NAME)
 
@@ -112,7 +112,7 @@ fclean: clean
 re : fclean all
 
 san_addr: CC := gcc
-san_addr: CFLAGS := $(CFLAGS) -fsanitize=address,undefined,signed-integer-overflow
+san_addr: CFLAGS := $(CFLAGS) -g -fsanitize=address,undefined,signed-integer-overflow
 san_addr: $(NAME)
 
 norm:

@@ -12,9 +12,9 @@
 ##  Summary
 
 First project of **[42Paris](https://42.fr/)** aims to create its own standard
-library by creating certain existing and non-existing functions from scratch.
-This library is also intended to be used and enriched with the functions of our
-choice throughout the curriculum.
+library based on `libc` by creating certain existing and non-existing functions
+from scratch.  This library is also intended to be used and enriched with the
+functions of our choice throughout the curriculum.
 
 > *"It will contain a lot of general purpose functions your programs will rely
 > upon."* - [Subject](https://cdn.intra.42.fr/pdf/pdf/57361/en.subject.pdf)

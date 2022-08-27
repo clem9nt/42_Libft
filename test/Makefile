@@ -1,17 +1,17 @@
 # @author   cvidon@42
-# @brief    Makefile for C programs that does not require any dependency.
+# @brief    Makefile for C programs compiling with a library.
 
-NAME		= libftest
-LIBFT		= ../..
+NAME		= liebeft
+LIBFT		= ..
 
 CC			= clang
 CFLAGS		= -Wall -Wextra -Werror -Wconversion
 
-CPPFLAGS	= -I $(LIBFT)/include
-LDFLAGS		= -L $(LIBFT)
-LDLIBS		= -l ft
+CPPFLAGS	= -I . -I $(LIBFT)/include
+LDFLAGS		=      -L $(LIBFT)
+LDLIBS		=      -l ft
 
-SRCS		= libftest.c
+SRCS		= liebeft.c
 OBJS		:= $(SRCS:%.c=%.o)
 
 RM			= rm -rf
@@ -22,18 +22,19 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
-	@echo "3."
+	@echo "\r>>> SUCCESS <<<     "
 
 %.o: %.c
+	@echo -n "Building $(NAME)..."
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-	@echo "1."
 	@$(MAKE) $(LIBFT) $(MUTE)
-	@echo "2."
 
 clean:
+	@$(MAKE) $(LIBFT) clean $(MUTE)
 	@$(RM) $(OBJS)
 
 fclean: clean
+	@$(MAKE) $(LIBFT) fclean $(MUTE)
 	@$(RM) $(NAME)
 
 re: fclean all
