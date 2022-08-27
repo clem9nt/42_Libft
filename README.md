@@ -13,7 +13,9 @@
 First project of [42Paris](https://42.fr/) aims to create its own standard
 library based on `libc` by creating certain existing and non-existing functions
 from scratch.  This library is also intended to be used and enriched with the
-functions of our choice throughout the curriculum.
+functions of our choice throughout the curriculum.  
+
+The code is written in accordance with 42 coding style and ***all the functions are documented with docstrings***.
 
 > *"It will contain a lot of general purpose functions your programs will rely
 > upon."* - [Subject](https://cdn.intra.42.fr/pdf/pdf/57361/en.subject.pdf)
@@ -26,6 +28,8 @@ superior layer of abstraction.
 This choice is also observable in the `libc`.  For example `STRLEN(3)`
 implementation from `<string.h>` will crash a program that tries to pass it a
 `NULL` string instead of returning `NULL` as it would if it was protected.
+
+Whole code is documented with docstrings (start from the header file).
 
 ##  Usage
 
