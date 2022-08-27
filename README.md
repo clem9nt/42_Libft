@@ -48,4 +48,4 @@ your project and compile it with these additional flags:
 - `make re` -- fclean + make.
 
 - `make update` -- update the repo to its newer version.
-- `make norm` -- check 42 C norm.
+- `make norm` -- check 42 coding style.
