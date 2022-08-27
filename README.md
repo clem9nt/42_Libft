@@ -15,7 +15,7 @@ library based on `libc` by creating certain existing and non-existing functions
 from scratch.  This library is also intended to be used and enriched with the
 functions of our choice throughout the curriculum.  
 
-The code is written in accordance with 42 coding style and ***all the functions are documented with docstrings***.
+The code is written in accordance with 42 C coding style and ***all the functions are documented with docstrings***.
 
 > *"It will contain a lot of general purpose functions your programs will rely
 > upon."* - [Subject](https://cdn.intra.42.fr/pdf/pdf/57361/en.subject.pdf)
@@ -48,4 +48,4 @@ your project and compile it with these additional flags:
 - `make re` -- fclean + make.
 
 - `make update` -- update the repo to its newer version.
-- `make norm` -- check 42 coding style.
+- `make norm` -- check 42 C coding style.
