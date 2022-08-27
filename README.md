@@ -6,6 +6,10 @@
 	<a href="#Summary">Summary</a>
 	<span> · </span>
 	<a href="#Usage">Usage</a>
+	<span> · </span>
+	<a href="#Tester">Tester</a>
+	<span> · </span>
+	<a href="#Tools">Tools</a>
 </h3>
 
 ##  Summary
@@ -13,7 +17,7 @@
 First project of [42Paris](https://42.fr/) aims to create its own standard
 library based on `libc` by creating certain existing and non-existing functions
 from scratch.  This library is also intended to be used and enriched with the
-functions of our choice throughout the curriculum.  
+functions of our choice throughout the curriculum.
 
 The code is written in accordance with 42 C coding style and ***all the functions are documented with docstrings***.
 
@@ -49,3 +53,15 @@ your project and compile it with these additional flags:
 
 - `make update` -- update the repo to its newer version.
 - `make norm` -- check 42 C coding style.
+
+## Tester
+
+- **[libftTester](https://github.com/Tripouille/libftTester)**
+
+- **[libft-unit-test](https://github.com/alelievr/libft-unit-test)**
+
+## Tools
+
+- **sanitizer**: `-fsanitize=address`
+
+*Add `-g` flag when compiling with `-fsanitize=address` to print errors line numbers instead of addresses in hexadecimal.*
