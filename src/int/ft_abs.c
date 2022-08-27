@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 /*
- ** @brief      Return the absolute value of a number.
+ ** @brief      Compute the absolute value of an integer.
  **
- ** @param[in]  nb a number.
- ** @return     The absolute value of 'nb'.
+ ** The abs() function computes the absolute value of the integer argument j.
+ **
+ ** @see        ABS(3) <stdlib.h>
  */
 
-int	ft_abs(int nb)
+int	ft_abs(int j)
 {
-	return (nb * ((nb > 0) - (nb < 0)));
+	return (j * ((j > 0) - (j < 0)));
 }

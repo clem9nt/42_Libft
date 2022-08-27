@@ -40,8 +40,6 @@ static size_t	ft_strnlen(char const *s, size_t n)
  ** dst is not a proper string)."
  **
  ** @see        STRLCAT(3) <string.h>
- **
- ** TODO replace strnlen with strlen + a cap check of its returned value.
  */
 
 size_t	ft_strlcat(char *dst, char const *src, size_t dstsize)

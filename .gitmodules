@@ -1,9 +1,0 @@
-[submodule "src/get_next_line/gnlTester"]
-	path = src/get_next_line/gnlTester
-	url = https://github.com/Tripouille/gnlTester.git
-[submodule "test/libft-unit-test"]
-	path = test/libft-unit-test
-	url = https://github.com/alelievr/libft-unit-test
-[submodule "test/libftTester"]
-	path = test/libftTester
-	url = https://github.com/Tripouille/libftTester
