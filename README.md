@@ -6,12 +6,11 @@
 	<a href="#Summary">Summary</a>
 	<span> · </span>
 	<a href="#Usage">Usage</a>
-	<span> · </span>
 </h3>
 
 ##  Summary
 
-First project of **[42Paris](https://42.fr/)** aims to create its own standard
+First project of [42Paris](https://42.fr/) aims to create its own standard
 library based on `libc` by creating certain existing and non-existing functions
 from scratch.  This library is also intended to be used and enriched with the
 functions of our choice throughout the curriculum.
@@ -21,10 +20,10 @@ functions of our choice throughout the curriculum.
 
 I chose not to protect the functions from NULL pointers passed to them as a
 parameter, indeed I prefer to let an explicit `SEGV` happen rather than obscure
-the problem behind a `return (NULL);`, making it more tedious to debug from a
+the problem behind a `return (NULL);` making it more tedious to debug from a
 superior layer of abstraction.
 
-This choice is also observable in the official libc, for example `STRLEN(3)`
+This choice is also observable in the `libc`.  For example `STRLEN(3)`
 implementation from `<string.h>` will crash a program that tries to pass it a
 `NULL` string instead of returning `NULL` as it would if it was protected.
 
@@ -32,6 +31,7 @@ implementation from `<string.h>` will crash a program that tries to pass it a
 
 Compile the library with a simple `make -j` then add `#include "libft.h"` to
 your project and compile it with these additional flags:
+
     -I <path_to_libft_include_dir>
     -L <path_to_libft_dir>
     -l ft
