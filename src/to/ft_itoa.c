@@ -32,7 +32,10 @@ char	*ft_itoa(int n)
 	ln = n;
 	sign = 0;
 	if (ln < 0)
-		ln = (sign++, -ln);
+	{
+		sign++;
+		ln = -ln;
+	}
 	len = ft_numlen(ln) + sign;
 	str = malloc (sizeof(char) * (len + 1));
 	if (!str)

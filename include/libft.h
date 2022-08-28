@@ -185,6 +185,7 @@ int		ft_strcmp(char const *s1, char const *s2);
 char	*ft_strdup(char const *str);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_free(char *s1, char *s2);
 char	*ft_strjoin_free_s1(char *s1, char const *s2);
 char	*ft_strjoin_free_s2(char const *s1, char *s2);
 size_t	ft_strlcat(char *dst, char const *src, size_t dstsize);

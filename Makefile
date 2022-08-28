@@ -1,6 +1,7 @@
 # @author   cvidon@42
-# @brief    Makefile for C programs that does not require any dependency.
+# @brief    Makefile for C library.
 
+NAME		= libft.a
 INC_DIR		= include
 SRC_DIR		= src
 OBJ_DIR		= obj
@@ -72,24 +73,22 @@ SRCS		= dlst/ft_dlstadd_back.c \
 			  to/ft_toupper.c \
 
 CC			= clang
-CFLAGS		= -Wall -Wextra -Werror -Wconversion -Wsign-conversion
+CFLAGS		= -Wall -Wextra -Werror -c
 CPPFLAGS	= -I include
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-NAME		= libft.a
 
 #------------------------------------------------#
 #	SHELL CMDS									 #
 #------------------------------------------------#
 
 RM			= rm -rf
-VALGRIND	= valgrind -q --leak-check=yes --show-leak-kinds=all
 
 #------------------------------------------------#
 #	RECIPES										 #
 #------------------------------------------------#
 
-.PHONY: all clean fclean re san_addr norm update
+.PHONY: all clean fclean re san_addr scream cry norm update
 
 all: $(NAME)
 
@@ -99,7 +98,7 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@[ ! -d $(@D) ] && mkdir -p  $(@D) || true
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CPPFLAGS) $< -o $@
 	@$(ECHO)"$(G)created $(END)$@"
 
 clean:
@@ -111,9 +110,15 @@ fclean: clean
 
 re : fclean all
 
-san_addr: CC := gcc
-san_addr: CFLAGS := $(CFLAGS) -g -fsanitize=address,undefined,signed-integer-overflow
+san_addr: CC		:= gcc
+san_addr: CFLAGS	:= $(CFLAGS) -g -fsanitize=address,undefined,signed-integer-overflow
 san_addr: $(NAME)
+
+scream: CFLAGS		:= $(CFLAGS) -Wconversion -Wsign-conversion -Wwrite-strings -Wcast-qual -Wcomma -pedantic -std=c89
+scream: $(NAME)
+
+cry: CFLAGS			:= $(CFLAGS) -Weverything
+cry: $(NAME)
 
 norm:
 	@norminette | grep -v "OK" || true

@@ -25,6 +25,9 @@ size_t	ft_numlen(long ln)
 
 	len = 1;
 	while (ln >= 10)
-		ln = (len++, ln / 10);
+	{
+		ln = ln / 10;
+		len++;
+	}
 	return (len);
 }

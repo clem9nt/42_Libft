@@ -33,5 +33,6 @@ char	*ft_strdup(char const *str)
 	ptr = dup;
 	while (*str)
 		*ptr++ = *str++;
-	return (*ptr = 0, dup);
+	*ptr = 0;
+	return (dup);
 }

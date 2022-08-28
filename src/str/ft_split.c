@@ -113,7 +113,10 @@ char	**ft_split(char const *s, char c)
 		{
 			tab[i] = ft_fill(s, c);
 			if (!tab[i])
-				return (ft_backfree(tab, i), NULL);
+			{
+				ft_backfree(tab, i);
+				return (NULL);
+			}
 			i++;
 			while (*s != c && *(s + 1))
 				s++;

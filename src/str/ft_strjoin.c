@@ -36,5 +36,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		*p3++ = *s1++;
 	while (*s2)
 		*p3++ = *s2++;
-	return (*p3 = 0, s3);
+	*p3 = 0;
+	return (s3);
 }

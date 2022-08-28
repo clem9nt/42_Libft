@@ -1,33 +1,34 @@
 # @author   cvidon@42
-# @brief    Makefile for C programs compiling with a library.
+# @brief    Simple Makefile for C lib tester.
 
 NAME		= liebeft
 LIBFT		= ..
 
 CC			= clang
-CFLAGS		= -Wall -Wextra -Werror -Wconversion
-
+CFLAGS		= -Wall -Wextra -Werror
 CPPFLAGS	= -I . -I $(LIBFT)/include
 LDFLAGS		=      -L $(LIBFT)
 LDLIBS		=      -l ft
-
 SRCS		= liebeft.c
 OBJS		:= $(SRCS:%.c=%.o)
 
-RM			= rm -rf
+VALGRIND	= valgrind -q --leak-check=yes --show-leak-kinds=all
 MAKE		= make -C
+RULE		= all
 MUTE		= 1>/dev/null 2>/dev/null
+CLS			= \r\033[K
+RM			= rm -rf
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
-	@echo "\r>>> SUCCESS <<<     "
+	@echo "$(CLS)>>> SUCCESS <<<"
 
 %.o: %.c
 	@echo -n "Building $(NAME)..."
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-	@$(MAKE) $(LIBFT) $(MUTE)
+	@$(MAKE) $(LIBFT) $(RULE) $(MUTE)
 
 clean:
 	@$(MAKE) $(LIBFT) clean $(MUTE)
@@ -39,16 +40,20 @@ fclean: clean
 
 re: fclean all
 
-update:
-	@git pull
-	@git submodule update --init
+san_addr: CC 		:= gcc
+san_addr: RULE 		:= san_addr
+san_addr: CFLAGS 	:= $(CFLAGS) -g -fsanitize=address,undefined,signed-integer-overflow
+san_addr: $(NAME)
 
-san_thread: CC := gcc
-san_thread: CFLAGS := $(CFLAGS) -g -fsanitize=thread,undefined,signed-integer-overflow
-san_thread: $(NAME)
+scream: CFLAGS		:= $(CFLAGS) -Wconversion -Wsign-conversion -Wwrite-strings -Wcast-qual -Wcomma -pedantic -std=c89
+scream: RULE 		:= scream
+scream: $(NAME)
 
-malloc_test: $(OBJS)
-	@clang -Wall -Wextra -Werror -g -fsanitize=undefined -rdynamic -o $@ $(OBJS) \
-		-Lft_mallocator -lmallocator
+cry: CFLAGS			:= $(CFLAGS) -Weverything
+cry: RULE			:= cry
+cry: $(NAME)
 
-.PHONY: all clean fclean re update malloc_test
+run: re
+	@$(VALGRIND) ./$(NAME) || true
+
+.PHONY: all clean fclean re san_addr scream cry run

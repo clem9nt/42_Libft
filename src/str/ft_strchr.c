@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 /*
  ** @brief      Locate a character in string.
  **
@@ -26,7 +28,7 @@ char	*ft_strchr(char const *s, int c)
 	while (*s && *s != (unsigned char)c)
 		++s;
 	if (*s == (unsigned char)c)
-		return ((char *)s);
+		return ((char *)(unsigned long)s);
 	else
 		return (0);
 }
