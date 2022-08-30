@@ -1,59 +1,106 @@
-# @author   cvidon@42
+# @file     Makefile
 # @brief    Simple Makefile for C lib tester.
+# @author   clemedon (Clément Vidon)
 
-NAME		= liebeft
-LIBFT		= ..
+NAME		:= liebeft
+LIB			:= ..
 
-CC			= clang
-CFLAGS		= -Wall -Wextra -Werror
-CPPFLAGS	= -I . -I $(LIBFT)/include
-LDFLAGS		=      -L $(LIBFT)
-LDLIBS		=      -l ft
-SRCS		= liebeft.c
+#------------------------------------------------#
+# INGREDIENTS                                    #
+#------------------------------------------------#
+# CC        compilers
+# CFLAGS    compiler flags
+# CPPFLAGS  preprocessor flags
+# LDFLAGS   linker extra flags
+# LDLIBS    library flags
+#
+# SRCS      source files
+# OBJS      object files
+
+CC			:= clang
+CFLAGS		:= -Wall -Wextra -Werror
+CPPFLAGS	:= -I . -I $(LIB)/include
+LDFLAGS		:=      -L $(LIB)
+LDLIBS		:=      -l ft
+
+SRCS		:= liebeft.c
 OBJS		:= $(SRCS:%.c=%.o)
 
-VALGRIND	= valgrind -q --leak-check=yes --show-leak-kinds=all
-MAKE		= make -C
-RULE		= all
-MUTE		= 1>/dev/null 2>/dev/null
-CLS			= \r\033[K
-RM			= rm -rf
+#------------------------------------------------#
+#   UTENSILS                                     #
+#------------------------------------------------#
+# RM        cleaning command
+# MAKE      other Makefile call command
+# RULE      other Makefile call rule
+# VALGRIND  valgrind command
+# CLS       clear the current line
+# MUTE      mute the stdout
+
+RM			:= rm -rf
+MAKE		:= make --directory
+RULE		:= all
+VALGRIND	:= valgrind -q --leak-check=yes --show-leak-kinds=all
+CLS			:= \r\033[K
+MUTE		:= 1>/dev/null
+
+#------------------------------------------------#
+#   RECIPES                                      #
+#------------------------------------------------#
+# all       build all targets
+# $(NAME)   build $(NAME) target
+# clean     remove objects
+# fclean    remove objects and binary
+# re        remove objects and binary and rebuild all
+
+.PHONY: all clean fclean re info
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
-	@echo "$(CLS)>>> SUCCESS <<<"
+	@echo "$(CLS)$(NAME): created."
 
 %.o: %.c
-	@echo -n "Building $(NAME)..."
+	@echo -n "$(CLS)Building $(NAME)..."
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-	@$(MAKE) $(LIBFT) $(RULE) $(MUTE)
+	@$(MAKE) $(LIB) $(RULE) $(MUTE)
 
 clean:
-	@$(MAKE) $(LIBFT) clean $(MUTE)
+	@$(MAKE) $(LIB) clean $(MUTE)
 	@$(RM) $(OBJS)
 
 fclean: clean
-	@$(MAKE) $(LIBFT) fclean $(MUTE)
+	@$(MAKE) $(LIB) fclean $(MUTE)
 	@$(RM) $(NAME)
 
 re: fclean all
 
-san_addr: CC 		:= gcc
-san_addr: RULE 		:= san_addr
-san_addr: CFLAGS 	:= $(CFLAGS) -g -fsanitize=address,undefined,signed-integer-overflow
-san_addr: $(NAME)
+#------------------------------------------------#
+#   CUSTOM RECIPES                               #
+#------------------------------------------------#
+# sana          memory corruption debugging
+# ansi          ANSI Std89 compliance
+# every         explore new warnings
+# info          standard build output
+# run           run the program
 
-scream: CFLAGS		:= $(CFLAGS) -Wconversion -Wsign-conversion -Wwrite-strings -Wcast-qual -Wcomma -pedantic -std=c89
-scream: RULE 		:= scream
-scream: $(NAME)
+.PHONY: sana ansi every info run
 
-cry: CFLAGS			:= $(CFLAGS) -Weverything
-cry: RULE			:= cry
-cry: $(NAME)
+sana: CC		:= gcc
+sana: RULE		:= sana
+sana: CFLAGS	+= -g -fsanitize=address,undefined,signed-integer-overflow
+sana: $(NAME)
+
+ansi: CFLAGS	+= -W -Wcast-qual -Wcomma -Wconversion -Wsign-conversion -Wwrite-strings -pedantic -std=c89
+ansi: RULE		:= ansi
+ansi: $(NAME)
+
+every: CFLAGS	+= -Weverything
+every: RULE		:= every
+every: $(NAME)
+
+info: fclean
+	@make --dry-run | grep -v "echo.*\".*\"\|\[.*\]"
 
 run: re
 	@$(VALGRIND) ./$(NAME) || true
-
-.PHONY: all clean fclean re san_addr scream cry run
