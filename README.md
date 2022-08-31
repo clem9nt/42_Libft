@@ -19,6 +19,8 @@ library based on `libc` by creating certain existing and non-existing functions
 from scratch.  This library is also intended to be used and enriched with the
 functions of our choice throughout the curriculum.
 
+External functions: `malloc`, `free`, `write`
+
 The code is written in accordance with **42 C** coding style,  **ANSI C89** compliant and entirely **documented with docstrings**.
 
 > *"It will contain a lot of general purpose functions your programs will rely
