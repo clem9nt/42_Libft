@@ -56,26 +56,24 @@ MUTE		:= 1>/dev/null
 # fclean    remove objects and binary
 # re        remove objects and binary and rebuild all
 
-.PHONY: all clean fclean re info
-
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
-	@echo "$(CLS)$(NAME): created."
-
 %.o: %.c
-	@echo -n "$(CLS)Building $(NAME)..."
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-	@$(MAKE) $(LIB) $(RULE) $(MUTE)
+	echo -n "$(CLS)Building $(NAME)..."
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(MAKE) $(LIB) $(RULE) $(MUTE)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
+	echo "$(CLS)$(NAME): created."
 
 clean:
-	@$(MAKE) $(LIB) clean $(MUTE)
-	@$(RM) $(OBJS)
+	$(MAKE) $(LIB) clean $(MUTE)
+	$(RM) $(OBJS)
 
 fclean: clean
-	@$(MAKE) $(LIB) fclean $(MUTE)
-	@$(RM) $(NAME)
+	$(MAKE) $(LIB) fclean $(MUTE)
+	$(RM) $(NAME)
 
 re: fclean all
 
@@ -87,8 +85,6 @@ re: fclean all
 # every         explore new warnings
 # info          standard build output
 # run           run the program
-
-.PHONY: sana ansi every info run
 
 sana: CC		:= gcc
 sana: RULE		:= sana
@@ -104,7 +100,13 @@ every: RULE		:= every
 every: $(NAME)
 
 info: fclean
-	@make --dry-run | grep -v "echo.*\".*\"\|\[.*\]"
+	make --dry-run | grep -v "echo.*\".*\"\|\[.*\]"
 
 run: re
-	@$(VALGRIND) ./$(NAME) || true
+	-$(VALGRIND) ./$(NAME)
+
+#------------------------------------------------#
+#   SPECIAL TARGETS                              #
+#------------------------------------------------#
+.SILENT:
+.PHONY: all clean fclean re info sana ansi every info run
