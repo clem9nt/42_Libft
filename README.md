@@ -51,9 +51,6 @@ your project and compile it with these additional flags:
 - `make fclean` -- deletes object files and get_next_line.
 - `make re` -- fclean + make.
 
-- `make update` -- update the repo to its newer version.
-- `make norm` -- check 42 C coding style.
-
 ## Tester
 
 - **[libftTester](https://github.com/Tripouille/libftTester)**
