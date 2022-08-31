@@ -19,12 +19,14 @@ library based on `libc` by creating certain existing and non-existing functions
 from scratch.  This library is also intended to be used and enriched with the
 functions of our choice throughout the curriculum.
 
-External functions: `malloc`, `free`, `write`
-
 The code is written in accordance with **42 C** coding style,  **ANSI C89** compliant and entirely **documented with docstrings**.
 
 > *"It will contain a lot of general purpose functions your programs will rely
 > upon."* - [Subject](https://cdn.intra.42.fr/pdf/pdf/57361/en.subject.pdf)
+> 
+External functions: `malloc`, `free`, `write`
+
+<hr>
 
 I chose not to protect the functions from NULL pointers passed to them as a
 parameter, indeed I prefer to let an explicit `SEGV` happen rather than obscure
@@ -34,8 +36,6 @@ superior layer of abstraction.
 This choice is also observable in the `libc`.  For example `STRLEN(3)`
 implementation from `<string.h>` will crash a program that tries to pass it a
 `NULL` string instead of returning `NULL` as it would if it was protected.
-
-Whole code is documented with docstrings (start from the header file).
 
 ##  Usage
 
