@@ -105,6 +105,7 @@ DEPS		:= $(OBJS:.o=.d)
 # END       reset output foreground color
 
 RM			:= rm -rf
+
 CLS			:= \r\033[K
 ECHO		:= echo -n "$(CLS)$(NAME): "
 R			:= $(shell tput setaf 1)
@@ -150,7 +151,7 @@ re : fclean all
 #   CUSTOM RECIPES                               #
 #------------------------------------------------#
 # sana          memory corruption debugging
-# ansi          ANSI Std89 compliance
+# ansi          ANSI c89 compliance
 # every         explore new warnings
 # update        update the repository
 # norm          42 C coding style compliance

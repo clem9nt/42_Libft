@@ -3,11 +3,12 @@
 # @author   clemedon (Clément Vidon)
 
 NAME		:= liebeft
-LIB			:= ..
 
 #------------------------------------------------#
 # INGREDIENTS                                    #
 #------------------------------------------------#
+# LIB       librariy
+#
 # CC        compilers
 # CFLAGS    compiler flags
 # CPPFLAGS  preprocessor flags
@@ -16,6 +17,8 @@ LIB			:= ..
 #
 # SRCS      source files
 # OBJS      object files
+
+LIB			:= ..
 
 CC			:= clang
 CFLAGS		:= -Wall -Wextra -Werror
@@ -40,6 +43,7 @@ RM			:= rm -rf
 MAKE		:= make --directory
 RULE		:= all
 VALGRIND	:= valgrind -q --leak-check=yes --show-leak-kinds=all
+
 CLS			:= \r\033[K
 MUTE		:= 1>/dev/null
 
@@ -79,7 +83,7 @@ re: fclean all
 #   CUSTOM RECIPES                               #
 #------------------------------------------------#
 # sana          memory corruption debugging
-# ansi          ANSI Std89 compliance
+# ansi          ANSI c89 compliance
 # every         explore new warnings
 # info          standard build output
 # run           run the program
