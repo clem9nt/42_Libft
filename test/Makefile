@@ -5,7 +5,7 @@
 NAME		:= liebeft
 
 #------------------------------------------------#
-# INGREDIENTS                                    #
+#   VARIABLES                                    #
 #------------------------------------------------#
 # LIB       librariy
 #
@@ -30,7 +30,7 @@ SRCS		:= liebeft.c
 OBJS		:= $(SRCS:%.c=%.o)
 
 #------------------------------------------------#
-#   UTENSILS                                     #
+#   TOOLS                                        #
 #------------------------------------------------#
 # RM        cleaning command
 # MAKE      other Makefile call command
@@ -48,7 +48,7 @@ CLS			:= \r\033[K
 MUTE		:= 1>/dev/null
 
 #------------------------------------------------#
-#   RECIPES                                      #
+#   BASIC RULES                                  #
 #------------------------------------------------#
 # all       build all targets
 # $(NAME)   build $(NAME) target
@@ -58,14 +58,14 @@ MUTE		:= 1>/dev/null
 
 all: $(NAME)
 
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
+	echo "$(CLS)$(NAME): created."
+
 %.o: %.c
 	echo -n "$(CLS)Building $(NAME)..."
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	$(MAKE) $(LIB) $(RULE) $(MUTE)
-
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
-	echo "$(CLS)$(NAME): created."
 
 clean:
 	$(MAKE) $(LIB) clean $(MUTE)
@@ -78,7 +78,7 @@ fclean: clean
 re: fclean all
 
 #------------------------------------------------#
-#   CUSTOM RECIPES                               #
+#   CUSTOM RULES                                 #
 #------------------------------------------------#
 # sana          memory corruption debugging
 # ansi          ANSI c89 compliance
@@ -99,8 +99,8 @@ every: CFLAGS	+= -Weverything
 every: RULE		:= every
 every: $(NAME)
 
-info: fclean
-	make --dry-run | grep -v "echo.*\".*\"\|\[.*\]"
+info:
+	make --dry-run --always-make --no-print-directory | grep -v "echo \| mkdir"
 
 run: re
 	-$(VALGRIND) ./$(NAME)
