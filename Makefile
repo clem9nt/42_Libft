@@ -127,13 +127,13 @@ END			:= $(shell tput sgr0)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
-	$(ECHO)"$(G)created$(END) $(END)$@\n"
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	$(ECHO)"$(G)created$(END) $(NAME)\n"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-	$(ECHO)"$(G)created $(END)$@"
+	$(ECHO)"$(G)created$(END) $@"
 
 -include $(DEPS)
 
