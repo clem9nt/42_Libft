@@ -57,6 +57,7 @@ SRCS        := \
 	mem/ft_memmove.c \
 	mem/ft_memset.c \
 	mem/ft_free.c \
+	mem/ft_freetab.c \
 	io/ft_get_next_line.c \
 	io/ft_putchar_fd.c \
 	io/ft_putendl_fd.c \

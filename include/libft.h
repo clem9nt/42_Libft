@@ -6,7 +6,7 @@
 /*   By: cvidon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:50:48 by cvidon            #+#    #+#             */
-/*   Updated: 2022/09/20 13:29:32 by cvidon           ###   ########.fr       */
+/*   Updated: 2022/09/23 12:56:33 by cvidon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_free(void *ptr);
+void	ft_freetab(void **tab);
 
 /*
  ** io/
