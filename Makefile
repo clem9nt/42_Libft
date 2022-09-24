@@ -148,10 +148,10 @@ re:
 	$(MAKE) fclean
 	$(MAKE) all
 
-sana: CFLAGS += -O0 -g3
-sana: CFLAGS += -fsanitize=address,undefined,signed-integer-overflow
-sana: CFLAGS += -fno-optimize-sibling-calls
-sana: all
+asan: CFLAGS += -O0 -g3
+asan: CFLAGS += -fsanitize=address,undefined,signed-integer-overflow
+asan: CFLAGS += -fno-optimize-sibling-calls
+asan: all
 
 ansi: CFLAGS += -W -pedantic -std=c89
 ansi: all
