@@ -104,6 +104,12 @@ ARFLAGS     := -r -c -s
 # RM        force remove
 # MAKE      quietly make
 # DIR_DUP   duplicate directory tree
+#
+# CRUSH     used to print on the same line
+# ECHO      echo statement
+# R         red color output
+# G         green color output
+# END       reset color output to default
 
 RM          := rm -f
 MAKE        := $(MAKE) --jobs --no-print-directory
